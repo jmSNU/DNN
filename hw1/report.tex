@@ -104,7 +104,33 @@ By substracting $\theta^\star$ on both side of equation 21, the following equati
     \theta^{(k+1)} - \theta^\star = (I_p - \alpha X^TX)(\theta^{(k)} - \theta^\star)
 \end{equation}
 
-Note that $I_p$ denotes identity matrix whose dimension is $p \times p$.
+Note that $I_p$ denotes identity matrix whose dimension is $p \times p$. This recursive equation has the following closed form. Here I denoted $\theta^{k} - \theta^{\star}$ as $\zeta^{(k)}$.
+
+\begin{equation}
+    \zeta^{k} = \zeta^{(0)}(I_p - \alpha X^TX) 
+\end{equation}
+
+According to SVD, 
+\begin{equation}
+    X^TX = V\Sigma^2V^T
+\end{equation}
+where $V \in O(p)$. I assumed that diagonal entries of $\Sigma^2 = \text{diag}(\sigma_1^2, \sigma_2^2, \cdots, \sigma_p^2)$, the eigenvalues of $X^TX$ are ordered. 
+This implies that $\rho(X^TX) = \sigma_1^2$. Since $V \in O(p)$, the equation 23 can be written as follows.
+
+\begin{align}
+    \zeta^{k} &= \left(VI_pV^T - \alpha V\Sigma^2V^T\right)^k\zeta^{(0)} \\
+    &= V(I_p - \alpha \Sigma^2)^kV^T \zeta^{(0)}
+\end{align}
+
+\begin{align}
+    \lVert\zeta^{(k)}\rVert^2 &= [\zeta^{(0)}]^TV^T (I_p - \alpha\Sigma^2)^{2k}V\zeta^{(0)} \\
+    &= [\zeta^{(0)}]^TV^T \text{diag}(1 - \alpha \sigma_1^2, 1 - \alpha \sigma_2^2, \cdots. 1 - \alpha \sigma_p^2)^{2k} V\zeta^{(0)} \\
+    &= [\zeta^{(0)}]^TV^T \text{diag}((1-\alpha \sigma_1^2)^{2k}, (1-\alpha \sigma_2^2)^{2k}, \cdots, (1-\alpha \sigma_p^2)^{2k})
+\end{align}
+
+Since $\alpha > 2/\rho(X^TX)$ implies $\left|1-\alpha \sigma_1^2\right|>1$, $\zeta^{(k)}$ diverges, that is $\theta^{(k)}$.
+
+
 
 \section{}
 \begin{figure}[!h]
@@ -140,7 +166,65 @@ for alpha in alpha_lst:
             x = x - alpha * fprime(x)
         result[alpha].append((x,x_init))
 \end{python}
+\section{}
+Since there is no theoretical analysis requirment on this probelm. I briefly introduce my code. The following code box is the code I implemented. 
 
+\begin{python}
+    import numpy as np
+
+    class Convolution1d :
+        def __init__(self, filt) :
+            self.__filt = filt
+            self.__r = filt.size
+            self.T = TransposedConvolution1d(self.__filt)
+
+        def __matmul__(self, vector) :
+            r, n = self.__r, vector.size
+            
+            return np.asarray([sum([self.__filt[i] * vector[i+j] for i in range(r)]) for j in range(n-r+1)])  # IMPLEMENT THIS
+        
+    class TransposedConvolution1d :
+        '''
+        Transpose of 1-dimensional convolution operator used for the 
+        transpose-convolution operation A.T@(...)
+        '''
+        def __init__(self, filt) :
+            self.__filt = filt
+            self.__r = filt.size
+
+        def __matmul__(self, vector) :
+            r = self.__r
+            n = vector.size + r - 1
+            vector = np.concatenate([np.zeros((r-1,)), vector, np.zeros((r-1,))]) # padding
+            return  np.asarray([sum(self.__filt[::-1] * vector[i:i+3]) for i in range(len(vector)-r+1)]) # IMPLEMENT THIS
+
+    def huber_loss(x) :
+        return np.sum( (1/2)*(x**2)*(np.abs(x)<=1) + (np.sign(x)*x-1/2)*(np.abs(x)>1) )
+    def huber_grad(x) :
+        return x*(np.abs(x)<=1) + np.sign(x)*(np.abs(x)>1)
+
+
+    r, n, lam = 3, 20, 0.1
+
+    np.random.seed(0)
+    k = np.random.randn(r)
+    b = np.random.randn(n-r+1)
+    A = Convolution1d(k)
+    #from scipy.linalg import circulant
+    #A = circulant(np.concatenate((np.flip(k),np.zeros(n-r))))[r-1:,:]
+
+
+    x = np.zeros(n)
+    alpha = 0.01
+    for _ in range(100) :
+        x = x - alpha*(A.T@(huber_grad(A@x-b))+lam*x)
+
+    print(huber_loss(A@x-b)+0.5*lam*np.linalg.norm(x)**2)
+\end{python}
+
+For \textbf{Convolution1d.\_\_matmul\_\_()}, I implemented it by using simple list comprehension. $i$th iteration calculate the product of each elements in $k$ and $v$ and \textbf{sum()} function, python native function, calcaulate their sum.
+This repeat until the every row of $A$ is seen. Hoever, for \textbf{TransposeConvlution1d.\_\_matmul()\_\_}, I padded the target vector. I strongly believe implementing this function in list comprehension with single line is possible, but 
+I think it is not that intuitive to read. Thus, to maintain the readability of my code, I add additional single line that pad zeros on the target vector. 
 \bibliographystyle{unsrt}
 \bibliography{ref.bib}
 \end{document}
