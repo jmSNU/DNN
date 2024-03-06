@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Homebrew) (preloaded format=pdflatex 2024.2.23)  4 MAR 2024 21:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Homebrew) (preloaded format=pdflatex 2024.2.23)  5 MAR 2024 13:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/report.tex"
-(/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/report.tex
+**"/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw1/report.tex"
+(/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw1/report.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-22> (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
@@ -640,52 +640,76 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
 \Hy@SectionHShift=\skip66
+) (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/pythonhighlight/pythonhighlight.sty
+Package: pythonhighlight 2017/02/09 python code highlighting; provided by Olivier Verdier <olivier.verdier@gmail.com>
+ (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count338
+\lst@gtempboxa=\box75
+\lst@token=\toks49
+\lst@length=\count339
+\lst@currlwidth=\dimen299
+\lst@column=\count340
+\lst@pos=\count341
+\lst@lostspace=\dimen300
+\lst@width=\dimen301
+\lst@newlines=\count342
+\lst@lineno=\count343
+\lst@maxwidth=\dimen302
+ (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
+\c@lstnumber=\count344
+\lst@skipnumbers=\count345
+\lst@framebox=\box76
+) (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2023/02/27 1.9 listings configuration
+))
+Package: listings 2023/02/27 1.9 (Carsten Heinz)
 )
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 34.
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 35.
  (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count338
-\l__pdf_internal_box=\box75
-) (./report.aux)
+\l__color_backend_stack_int=\count346
+\l__pdf_internal_box=\box77
+) (./report.aux (./bu.aux))
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for LUC/nanummj/m/n on input line 34.
-LaTeX Font Info:    Trying to load font information for LUC+nanummj on input line 34.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for LUC/nanummj/m/n on input line 35.
+LaTeX Font Info:    Trying to load font information for LUC+nanummj on input line 35.
  (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/nanumtype1/lucnanummj.fd
 File: lucnanummj.fd 2013/02/12 v0.1 Nanum Myeongjo font definitions
 )
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
  (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count339
-\scratchdimen=\dimen299
-\scratchbox=\box76
-\nofMPsegments=\count340
-\nofMParguments=\count341
-\everyMPshowfont=\toks49
-\MPscratchCnt=\count342
-\MPscratchDim=\dimen300
-\MPnumerator=\count343
-\makeMPintoPDFobject=\count344
-\everyMPtoPDFconversion=\toks50
+\scratchcounter=\count347
+\scratchdimen=\dimen303
+\scratchbox=\box78
+\nofMPsegments=\count348
+\nofMParguments=\count349
+\everyMPshowfont=\toks50
+\MPscratchCnt=\count350
+\MPscratchDim=\dimen304
+\MPnumerator=\count351
+\makeMPintoPDFobject=\count352
+\everyMPtoPDFconversion=\toks51
 ) (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -694,11 +718,11 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )) (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 34.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 35.
 
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into your preamble.
- on input line 34.
+ on input line 35.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -734,30 +758,65 @@ Package pgfplots Warning: running in backwards compatibility mode (unsuitable ti
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 34.
+Package hyperref Info: Link coloring OFF on input line 35.
 (./report.out) (./report.out)
 \@outlinefile=\write5
 \openout5 = `report.out'.
 
- [1
+\c@lstlisting=\count353
+LaTeX Font Info:    Trying to load font information for U+msa on input line 39.
+ (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 39.
+ (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 39.
+ (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/wasysym/uwasy.fd
+File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
+)
 
-{/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}] (./report.aux)
+Package amsmath Warning: Foreign command \over;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 44.
+
+[1
+
+{/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}]
+<Fig1.png, id=55, 208.1376pt x 198.0198pt>
+File: Fig1.png Graphic file (type png)
+<use Fig1.png>
+Package pdftex.def Info: Fig1.png  used on input line 112.
+(pdftex.def)             Requested size: 208.13708pt x 198.01932pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+(/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2023/02/27 1.9 listings language file
+)
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <8> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 122.
+\openout4 = `bu.aux'.
+
+ (./report.bbl [2]) [3 <./Fig1.png>] (./report.aux (./bu.aux))
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: F128EFAD2E40D0EFEFCDF769DEFD5087;229.
+(rerunfilecheck)             Checksum: E41E9EC76E06A704C6361735357EF817;140.
  ) 
 Here is how much of TeX's memory you used:
- 35812 strings out of 476025
- 880654 string characters out of 5779036
- 1853388 words of memory out of 5000000
- 55732 multiletter control sequences out of 15000+600000
- 514103 words of font info for 38 fonts, out of 8000000 for 9000
+ 38059 strings out of 476025
+ 910778 string characters out of 5779036
+ 2028388 words of memory out of 5000000
+ 57868 multiletter control sequences out of 15000+600000
+ 520503 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,5n,103p,776b,907s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-Output written on report.pdf (1 page, 33090 bytes).
+ 99i,15n,103p,780b,1633s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsltt10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on report.pdf (3 pages, 185397 bytes).
 PDF statistics:
- 54 PDF objects out of 1000 (max. 8388607)
- 44 compressed objects within 1 object stream
- 7 named destinations out of 1000 (max. 500000)
- 53 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 188 PDF objects out of 1000 (max. 8388607)
+ 147 compressed objects within 2 object streams
+ 57 named destinations out of 1000 (max. 500000)
+ 50 words of extra memory for PDF output out of 10000 (max. 10000000)
 

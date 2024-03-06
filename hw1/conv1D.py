@@ -9,7 +9,7 @@ class Convolution1d :
     def __matmul__(self, vector) :
         r, n = self.__r, vector.size
         
-        return None  # IMPLEMENT THIS
+        return np.asarray([sum([self.__filt[i] * vector[i+j] for i in range(r)]) for j in range(n-r+1)])  # IMPLEMENT THIS
     
 class TransposedConvolution1d :
     '''
@@ -23,8 +23,8 @@ class TransposedConvolution1d :
     def __matmul__(self, vector) :
         r = self.__r
         n = vector.size + r - 1
-
-        return None  # IMPLEMENT THIS
+        vector = np.concatenate([np.zeros((r-1,)), vector, np.zeros((r-1,))]) # padding
+        return  np.asarray([sum(self.__filt[::-1] * vector[i:i+3]) for i in range(len(vector)-r+1)]) # IMPLEMENT THIS
 
 def huber_loss(x) :
     return np.sum( (1/2)*(x**2)*(np.abs(x)<=1) + (np.sign(x)*x-1/2)*(np.abs(x)>1) )

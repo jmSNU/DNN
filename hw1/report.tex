@@ -1,0 +1,146 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{kotex}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{titling}
+\setlength{\droptitle}{-2cm}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{siunitx} 
+\usepackage{enumerate} 
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{tikz,pgfplots}
+\usepackage{wasysym}
+\usepackage{geometry}
+\usepackage{authblk}
+\usepackage{kotex}
+\usepackage{bibunits}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{pythonhighlight}
+
+\geometry{
+    a4paper,
+    total={170mm,257mm},
+    left=20mm,
+    top=20mm,
+}
+
+\title{\textbf{Mathematical Foundation of DNN : HW 1}}
+\author{Jeong Min Lee}
+
+\begin{document}
+\maketitle
+
+\section{}
+In this problem, I followed the notation given by the Petersen and Pedersen\cite{Petersen2008}. Also, I denote the element of matrix $X$ in $i$th row and $j$th column as $X_{ij}$
+\subsection*{a}
+\begin{align} 
+    \left({\partial \over \partial \theta} l_i(\theta)\right)_j &= {\partial l_i \left(\theta\right)\over \partial \theta_j} \\
+    &= (X_i^T\theta - Y) X_{ij}
+\end{align}
+
+By enumberating the last equation in column vector, one can get the following result.
+
+\begin{equation}
+    {\partial \over \partial \theta} l_i(\theta) = (X_i^T\theta - Y_i)X_i
+\end{equation}
+Note that $(X_i^T\theta - Y_i)\in \mathbb{R}$ and thus, enumeration affects only to the last $X_{ij}$. (It results in $X_i$) 
+
+\subsection*{b}
+\begin{align}
+    \mathcal{L}(\theta) &= \frac{1}{2} \lVert X\theta - Y \rVert^2 \\ &= \frac{1}{2}\sum_i \left(X_i^T\theta - Y_i\right)^2 \\ &= \sum_i l_i(\theta)    
+\end{align}
+
+From the obseravtion above and the result of the problem(a),
+
+\begin{align}
+    \nabla_\theta \mathcal{L}(\theta) &= \sum_i \nabla_\theta l_i(\theta) \\ &= \sum_i (X_i^T\theta - Y_i)X_i \\ &= \sum_i X_i^T\theta X_i - X_i Y_i
+\end{align}
+
+According to the hint given by the original problem statement, noting that the matrix consisting of the $X_i$ as a column is $X^T$,
+
+\begin{align}
+    \nabla_\theta \mathcal{L}(\theta) &= X^T \begin{pmatrix} X_1^T\theta \\ X_2^T\theta \\ \vdots \\ X_N^T\theta\end{pmatrix} - X^TY \\
+    &= X^T\begin{pmatrix} X_1^T \\ X_2^T \\ \vdots \\ X_N^T\end{pmatrix}\theta - X^TY \\ &= X^TX\theta - X^TY \\ &= X^T(X\theta - Y) 
+\end{align}
+
+
+\section{}
+
+Since $f'(\theta) = \theta$, 
+\begin{align}
+    \theta^{(k+1)} &= \theta^{(k)} - \alpha f^\prime(\theta^{(k)}) 
+    \\ &= (1-\alpha) \theta^{(k)}
+\end{align}
+\footnote{To resolve the confusion due to the notation between $k$th element and power of $k$, I used parenthesis to denote the $k$th element}
+
+\begin{align}
+    &\frac{\theta^{(k+1)}}{\theta^{(k)}} = 1-\alpha \\
+    &\therefore \theta^{(k)} = \theta^{(0)}(1-\alpha)^k
+\end{align}
+
+If $\alpha >2$, then $\left|1-\alpha\right|>1$. This results in $\theta^{(k)} \rightarrow \infty $ as $k\rightarrow \infty$
+\section{}
+
+From problem 1, I showed the following. 
+
+\begin{equation}
+    \nabla f(\theta) = X^T(X\theta - Y)
+\end{equation}
+Inserting it to the GD,
+
+\begin{align}
+    \theta^{(k+1)} &= \theta^{(k)}  - \alpha X^T(X\theta^{(k)}- Y) \\
+    &= \theta^{(k)} - \alpha X^TX\theta^{(k)} + \alpha X^TY \\
+    &= \theta^{(k)} - \alpha X^TX\theta^{(k)} + \alpha XX^T \theta^\star
+\end{align}
+By substracting $\theta^\star$ on both side of equation 21, the following equation is derived.
+
+\begin{equation}
+    \theta^{(k+1)} - \theta^\star = (I_p - \alpha X^TX)(\theta^{(k)} - \theta^\star)
+\end{equation}
+
+Note that $I_p$ denotes identity matrix whose dimension is $p \times p$.
+
+\section{}
+\begin{figure}[!h]
+    \begin{center}
+        \includegraphics{Fig1.png}
+        \caption{The result of gradient descent of $f(x)$ is described. The proportion of initial points that converges to each local minimum is depicted. The color of given ratio matches to the each $\alpha$. Note that there is no scatter in this plot corresponding to $\alpha = 4$ since none of them converged. }
+    \end{center}
+\end{figure}
+
+I implement my own gradient descent algorithm to solve this problem. As mentioned in homework document, I use three learning rate $\alpha = [0.01,0.3,4]$. Furthermore,
+for the robust analysis, I randomly sampled 50 initial point of x for each $\alpha$. This result agrees to the general notion that GD with small learning rate temps to converge both of local minma, while that with intermediate learning rate converges only to the wide local minimum. 
+The following python code is the code used to solve this problem.
+
+\begin{python}
+import numpy as np
+import matplotlib.pyplot as plt
+alpha_lst = [0.01, 0.3,4]
+iter_num = 50 # number of sampling
+epsilon = 1e-4 # acceptable level
+result = dict() # contain the result of experiment
+max_step = 1000 # maximum step not to run while loop infintely
+
+for alpha in alpha_lst:
+    print(f"--------------------------alpha = {alpha}---------------------------------------")
+    result[alpha] = []
+    for i in range(iter_num):
+        x = 25*np.random.random_sample()-5
+        x_init = x
+        step = 0
+        while fprime(x) > epsilon or step < max_step:
+            print(f"step : {step}/{max_step}")
+            step +=1
+            x = x - alpha * fprime(x)
+        result[alpha].append((x,x_init))
+\end{python}
+
+\bibliographystyle{unsrt}
+\bibliography{ref.bib}
+\end{document}
