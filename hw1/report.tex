@@ -83,7 +83,7 @@ Since $f'(\theta) = \theta$,
     &\therefore \theta^{(k)} = \theta^{(0)}(1-\alpha)^k
 \end{align}
 
-If $\alpha >2$, then $\left|1-\alpha\right|>1$. This results in $\theta^{(k)} \rightarrow \infty $ as $k\rightarrow \infty$
+If $\alpha >2$, then $\left|1-\alpha\right|>1$. This,from geometric sequence's convergence condition, results in $\theta^{(k)} \rightarrow \infty $ as $k\rightarrow \infty$
 \section{}
 
 From problem 1, I showed the following. 
@@ -114,8 +114,9 @@ According to SVD,
 \begin{equation}
     X^TX = V\Sigma^2V^T
 \end{equation}
-where $V \in O(p)$. I assumed that diagonal entries of $\Sigma^2 = \text{diag}(\sigma_1^2, \sigma_2^2, \cdots, \sigma_p^2)$, the eigenvalues of $X^TX$ are ordered. 
-This implies that $\rho(X^TX) = \sigma_1^2$. Since $V \in O(p)$, the equation 23 can be written as follows.
+where $V \in O(p)$, orthonormal group $O(p)$ with dimension $p$. I assumed that diagonal entries of $\Sigma^2 = \text{diag}(\sigma_1^2, \sigma_2^2,\\ \cdots, \sigma_p^2)$, 
+the eigenvalues of $X^TX$ are ordered.(I denote diagonal matrix whose diagonal entries are $a_1,a_2,\cdots,a_n$ as diag($a_1,a_2,\cdot, a_n$))
+This implies that $\rho(X^TX) = \sigma_1^2$. Since $V \in O(p)$, the equation (23) can be written as follows.
 
 \begin{align}
     \zeta^{k} &= \left(VI_pV^T - \alpha V\Sigma^2V^T\right)^k\zeta^{(0)} \\
@@ -128,7 +129,7 @@ This implies that $\rho(X^TX) = \sigma_1^2$. Since $V \in O(p)$, the equation 23
     &= [\zeta^{(0)}]^TV^T \text{diag}((1-\alpha \sigma_1^2)^{2k}, (1-\alpha \sigma_2^2)^{2k}, \cdots, (1-\alpha \sigma_p^2)^{2k})
 \end{align}
 
-Since $\alpha > 2/\rho(X^TX)$ implies $\left|1-\alpha \sigma_1^2\right|>1$, $\zeta^{(k)}$ diverges, that is $\theta^{(k)}$.
+Since $\alpha > 2/\rho(X^TX)$ implies $\left|1-\alpha \sigma_1^2\right|>1$, $\zeta^{(k)}$,that is $\theta^{(k)}$, diverges.
 
 
 
@@ -140,8 +141,8 @@ Since $\alpha > 2/\rho(X^TX)$ implies $\left|1-\alpha \sigma_1^2\right|>1$, $\ze
     \end{center}
 \end{figure}
 
-I implement my own gradient descent algorithm to solve this problem. As mentioned in homework document, I use three learning rate $\alpha = [0.01,0.3,4]$. Furthermore,
-for the robust analysis, I randomly sampled 50 initial point of x for each $\alpha$. This result agrees to the general notion that GD with small learning rate temps to converge both of local minma, while that with intermediate learning rate converges only to the wide local minimum. 
+I implement my own gradient descent algorithm to solve this problem. As mentioned in homework document, I use three learning rate, $\alpha = [0.01,0.3,4]$. Furthermore,
+for the robust analysis, I randomly sampled 50 initial point of x for each $\alpha$. The result agrees to the general notion that GD with small learning rate temps to converge both of local minma, while that with intermediate learning rate converges only to the wide local minimum. 
 The following python code is the code used to solve this problem.
 
 \begin{python}
@@ -163,11 +164,11 @@ for alpha in alpha_lst:
         while fprime(x) > epsilon or step < max_step:
             print(f"step : {step}/{max_step}")
             step +=1
-            x = x - alpha * fprime(x)
+            x = x - alpha * fprime(x) # Gradient Descent
         result[alpha].append((x,x_init))
 \end{python}
 \section{}
-Since there is no theoretical analysis requirment on this probelm. I briefly introduce my code. The following code box is the code I implemented. 
+Since there is no theoretical analysis requirment on this probelm. I briefly introduce my code. The following box is the code I implemented. 
 
 \begin{python}
     import numpy as np
@@ -222,9 +223,10 @@ Since there is no theoretical analysis requirment on this probelm. I briefly int
     print(huber_loss(A@x-b)+0.5*lam*np.linalg.norm(x)**2)
 \end{python}
 
-For \textbf{Convolution1d.\_\_matmul\_\_()}, I implemented it by using simple list comprehension. $i$th iteration calculate the product of each elements in $k$ and $v$ and \textbf{sum()} function, python native function, calcaulate their sum.
-This repeat until the every row of $A$ is seen. Hoever, for \textbf{TransposeConvlution1d.\_\_matmul()\_\_}, I padded the target vector. I strongly believe implementing this function in list comprehension with single line is possible, but 
-I think it is not that intuitive to read. Thus, to maintain the readability of my code, I add additional single line that pad zeros on the target vector. 
+For \textbf{Convolution1d.\_\_matmul\_\_()}, I implemented it by using simple list comprehension. $i$th iteration calculate the product of each elements in $k$ and vector and \textbf{sum()} function, python native function, calcaulate their sum.
+This repeat until the every row of $A$ is seen. However, for \textbf{TransposeConvlution1d.\_\_matmul()\_\_}, I padded the target vector. I strongly believe implementing this function in list comprehension with single line is possible, but 
+I think it is not that intuitive to read. Thus, to maintain the readability of my code, I add additional single line that pads zeros on the target vector. 
+As a result, I got 0.4587586843129764 for the result of execution, which matches to that of the naive implementation of $A$.
 \bibliographystyle{unsrt}
 \bibliography{ref.bib}
 \end{document}
