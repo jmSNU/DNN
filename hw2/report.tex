@@ -22,6 +22,7 @@
 \usepackage{tabularx}
 \usepackage{hyperref}
 \usepackage{pythonhighlight}
+\usepackage[toc,page]{appendix}
 
 \geometry{
     a4paper,
@@ -153,9 +154,106 @@ If $p=q$, then,
 Since if $p\neq q$, we can apply the formulation made in equation \ref{eqn8}, $D_{KL}$ never be zero. 
 \section{}
 \section{}
-\section{}
-\appendix
+This problem can be solved easily by considering the each element of the gradient vector. Taking $\odot$ into account, considering elementwisely is more efficient. Thus, it is suffient to show that the $j$th component of left hand side is equal to that of right hand side one. Please note that the second equality of $\nabla_b, \nabla_a$ are trivial by refering that multiplying diagonal matrix to a vector is identical to multipyling diagonal entry to each vector element. 
 
+\begin{align*}
+    \left[\nabla_u f_\theta(x)\right]_j &= {\partial \over \partial u_j} f_\theta(x) \\
+    &= {\partial \over \partial u_j} \sum_i u_i \sigma(a_ix + b_i) \\
+    &= \sum_i \delta_{ij} \sigma(a_ix + b_i)\\
+    &= \sigma(a_jx + b_j)
+\end{align*}
+\begin{align*}
+    \left[\nabla_b f_\theta(x)\right]_j &= {\partial \over \partial b_j} \sum_i u_i \sigma(a_ix + b_i) \\
+    &= \sum_i u_i \sigma^\prime(a_ix + b_i)\left({\partial \over \partial b_j} (a_ix + b_i)\right) \\
+    &= \sum_i u_i \sigma^\prime(a_ix + b_i)\delta_{ij}\\
+    & = u_j \sigma^\prime(a_jx + b_j)
+\end{align*}
+
+\begin{align*}
+    \left[\nabla_a f_\theta(x)\right]_j &= {\partial \over \partial a_j} \sum_i u_i \sigma(a_ix + b_i) \\
+    &= \sum_i u_i \sigma^\prime(a_ix + b_i)\left({\partial \over \partial a_j} (a_ix + b_i)\right) \\
+    &= \sum_i u_i \sigma^\prime(a_ix + b_i)\delta_{ij}x_i\\
+    &= u_j \sigma^\prime(a_jx + b_j)x_j
+\end{align*}
+
+\section{}
+I used aformentioned code to implement SGD via SVM. The figure \ref{fig4} shows the results of the following code. As the figure depicted, training is successful. To be specific, the blue one, which learnd from only a epoch does not approximate the true function, well. However, as epoch increases, our model becomes well representation of the true function.  
+\begin{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+def f_true(x) :
+    return (x-2)*np.cos(x*4)
+
+def sigmoid(x) :
+    return 1 / (1 + np.exp(-x))
+
+def sigmoid_prime(x) :
+    return sigmoid(x) * (1 - sigmoid(x))
+
+K = 10000
+alpha = 0.007
+N, p = 30, 50
+np.random.seed(0)
+a0 = np.random.normal(loc = 0.0, scale = 4.0, size = p)
+b0 = np.random.normal(loc = 0.0, scale = 4.0, size = p)
+u0 = np.random.normal(loc = 0, scale = 0.05, size = p)
+theta = np.concatenate((a0,b0,u0))
+losses =[]
+tmp_losses = []
+
+X = np.random.normal(loc = 0.0, scale = 1.0, size = N)
+Y = f_true(X)
+
+def f_th(theta, x) :
+    return np.sum(theta[2*p : 3*p] * sigmoid(theta[0 : p] * np.reshape(x,(-1,1)) + theta[p : 2*p]), axis=1)
+
+def diff_f_th(theta, x) : # from problem 6, I extensively deploy the elementwise product of numpy array.
+    a = theta[:p]
+    b = theta[p:2*p]
+    u = theta[2*p:]
+    return np.append(np.append(np.diag(sigmoid_prime(a*x+b))@u*x, np.diag(sigmoid_prime(a*x+b))@u), sigmoid(a*x+b))
+
+xx = np.linspace(-2,2,1024)
+plt.plot(X,f_true(X),'rx',label='Data points')
+plt.plot(xx,f_true(xx),'r',label='True Fn')
+
+for k in range(K) :
+    idx = np.random.randint(0,N-1)
+    input, label = X[idx], Y[idx]
+    loss = (f_th(theta,input) - label)**2/2 #MSE
+    tmp_losses.append(loss)
+    #SGD
+    theta = theta - alpha*(f_th(theta,input) - label) * diff_f_th(theta,input)
+    
+    if (k+1)%2000 == 0 :
+        plt.plot(xx,f_th(theta, xx),label=f'Learned Fn after {k+1} iterations')
+
+    if (k+1)%p == 0: #for each epoch
+        losses.append(np.mean(tmp_losses)) # store the mean loss of each epoch
+        tmp_losses = []
+
+plt.legend()
+plt.show()
+plt.savefig('plot.png')
+\end{python}
+
+
+\begin{figure}[!h]
+    \begin{center}
+        \subfigure{
+            \includegraphics{fig/prob7.png}
+        }
+        \subfigure{
+            \includegraphics{fig/prob7_2.png}
+        }
+    \end{center}
+    \label{fig4}
+    \caption{(a) The result of SGD training. One can notice that as SGD learned more, the $f_\theta$ became more similar to true function. (b) This figure shows that the SGD train was success. }
+\end{figure}
+
+\appendix
+\section{}
 \begin{python}
 import numpy as np
 import torch
@@ -201,7 +299,7 @@ for _ in range(epoch) :
     losses.append(np.mean([x.detach().numpy() for x in tmp_losses]))
     
 \end{python}
-
+\section{}
 \begin{python}
 import numpy as np
 from random import randint
@@ -242,7 +340,7 @@ for _ in range(epoch) :
         model.update_weight(grad,lr = lr)
     losses.append(np.mean([x for x in tmp_losses]))
 \end{python}
-
+\section{}
 \begin{python}
 import numpy as np
 import torch
@@ -285,7 +383,7 @@ for _ in range(epoch) :
         optimizer.step() # update the parameteres
     svm_losses.append(np.mean([x.detach().numpy() for x in tmp_losses]))
 \end{python}
-
+\section{}
 \begin{python}
 import numpy as np
 from random import randint
@@ -345,7 +443,7 @@ plt.ylabel("Loss",fontsize = 20)
 plt.show()
 print(cnt)
 \end{python}
-
+\section{}
 \begin{python}
 for i in range(N):
     if y[i] == 1:
