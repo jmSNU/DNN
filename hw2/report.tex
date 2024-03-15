@@ -24,6 +24,7 @@
 \usepackage{pythonhighlight}
 \usepackage[toc,page]{appendix}
 
+
 \geometry{
     a4paper,
     total={170mm,257mm},
@@ -36,13 +37,13 @@
 
 \begin{document}
 \maketitle
-In this assigment, I implemented every algorith both with torch package and without it(except problem 7). 
-I'll focus on the result of optimization and the comparison both implmentations. Also, I attached the code what I used in this assignment in appendix of this document. Please refer to it.
-\section{}
+In this assigment, I implemented every algorithms both with torch package and without it(except problem 7). 
+I'll focus on the result of optimization and the comparison to both implmentations. Also, I attached the code what I used in this assignment in appendix of this document. Please refer to it if you need.
+\section*{1}
 
 I refer the code given by lecture to implement the SGD with logistic regression. The result of this code is 
 described in figure \ref{fig1}. As figure \ref{fig1} depicted, both implementation succeeded convergence, since their losses were decreasing and saturated.
-Since the algorithm without torch and optimizer is too naive, the performace of SGD without SGD is worse than that with torch. To be specific, 
+Since the algorithm without torch and optimizer is too naive, the performace of SGD without torch is worse than that with torch. To be specific, 
 the result drawn by SGD without torch has larger loss and sizeable variance. I guess the optimizer torch using is more sophisticated and effective. 
 
 \begin{figure}[!h]
@@ -53,12 +54,11 @@ the result drawn by SGD without torch has larger loss and sizeable variance. I g
     \caption{The comparison of the algorithm of SGD both with torch and without it.}
 \end{figure}
 
-\section{}
+\section*{2}
 Simiar to problem 1, both algorithm were successful to converge. Surprisingly, in this problem, my own SGD algorithm outperform the implementation with torch.
-I conjecture that this outperformace is intrinsic algorithmic issues in torch or the hyperparameter tuning. At the first, I suspect that the SGD in torch hit the non-differentiable point of ReLU function.
+I conjecture that this outperformace is from the issue of hyperparameter tuning. At the first, I suspect that the SGD in torch hit the non-differentiable point of ReLU function.
 However, when I counted the number of hit that SGD meet the non-differential point within its training, it result in zero, that is, SGD never meet non-differentiable point in its training process. 
-Even if the implementation with torch cannot show good performance, 
-it still better than logistic regression.
+Furthermore, the optimization with SVM is better than logistic regression with respect to its faster convergence.
 
 \begin{figure}[!h]
     \begin{center}
@@ -70,15 +70,15 @@ it still better than logistic regression.
         }
         \label{fig2}
     \end{center}
-    \caption{(a) The comparison of the algorithm of SGD both with torch and without it. (b) The comparision between logistic regression and SVM.}
+    \caption{(a) The comparison of the algorithm of SGD both with torch and without it. (b) The comparision between logistic regression and SVM. I used the algorithm without the torch.}
 \end{figure}
 
 
-\section{}
+\section*{3}
 
 As one can check from figure \ref{fig3}, the given data is not linearly separable, that is, there is no line that separate both red and blue dot into two sectors.
 However, after transform the $X$ using $\varphi$, this data can be linearly separable. To calculate the decision boundary, I used SVM which is more superior than logistic regression.
-
+Again, I attached the implementation at the appendix. 
 \begin{figure}[!h]
     \begin{center}
         \subfigure[]{
@@ -92,17 +92,29 @@ However, after transform the $X$ using $\varphi$, this data can be linearly sepa
     \label{fig3}
 \end{figure}
 
+\begin{figure}[!h]
+    \begin{center}
+        \subfigure{
+            \includegraphics[scale = 0.5]{fig/prob7.png}
+        }
+        \subfigure{
+            \includegraphics[scale = 0.5]{fig/prob7_2.png}
+        }
+    \end{center}
+    \label{fig4}
+    \caption{(a) The result of SGD training. One can notice that as SGD learned more, the $f_\theta$ became more similar to true function. (b) This figure shows that the SGD train was success. }
+\end{figure}
 
-\section{}
+\clearpage
+\section*{4,5}
+I proved problem 4 and 5 at the same time. 
 \textbf{CLAIM} : $y = -\log(x)$ function is strict convex function. 
-To prove the \textbf{CLAIM} above, I proved the following \textbf{LEMMA}.
-
-
+\\To prove the \textbf{CLAIM} above, I proved the following \textbf{LEMMA}.\\
 \textbf{LEMMA} : The differentiable function $f$ is strictly convex \textit{if and only if} its derivate $f^\prime$ is strictly increasing.
 \textbf{proof}\\
-$\implies :     a,b \in \mathbb{R} (a<b). \text{Let} x_1, x_2, x_3 \in \mathbb{R} \text{ be chosen s.t. } a<x_1<x_2<x_3<b.$
+$\implies :     a,b \in \mathbb{R} (a<b). \text{ Let} x_1, x_2, x_3 \in \mathbb{R} \text{ be chosen s.t. } a<x_1<x_2<x_3<b.$
 
-From Chordal Slope Lemma, which is famous lemma applicable to convex function,
+From Chordal Slope Lemma, which is famous lemma applicable to convex function, the following inequalities are held.
 
 \begin{equation}
     \frac{f(x_1) - f(a)}{x_1 - a} < \frac{f(x_2) - f(x_1)}{x_2 - x_1}<\frac{f(x_3) - f(x_2)}{x_3 - x_2} < \frac{f(b) - f(x_3)}{b - x_3}
@@ -117,6 +129,8 @@ Taking limit $x_1 \rightarrow a, x_3 \rightarrow b$ on equation \ref{eqn1},
 \begin{equation}
     f^\prime(a) \le \frac{f(x_2) - f(a)}{x_2 - a} < \frac{f(b) - f(x_2)}{b - x_2} \le f^\prime(b)
 \end{equation}\\
+and, therefore, $f^\prime(a)<f^\prime(b)$ for arbitrary $a,b\in\mathbb{R}$.\\
+
 $\Longleftarrow$ : Let $x_1, x_2, x_3 \in \mathbb{R}$ s.t. $x_1<x_2<x_3$. From Mean Value Theorem,
 \begin{equation}
     \exists a \text{ s.t } \frac{f(x_2) - f(x_1)}{x_2 - x_1} = f^\prime(a) \\
@@ -132,7 +146,7 @@ Note that $x_1<a<x_2<b<x_3$. Since $f^\prime$ is strictly increasing, $f^\prime(
 The result of equation \ref{eqn6} is equivalent that $f$ is strictly convex according to Chordal Slope Lemma.$\blacksquare$ 
 
 \textbf{proof of CLAIM}
-From the Lemma prove above, it is enough to show that the derivative of $y = -\log(x)$ is strictly increasing. 
+From the Lemma proved above, it is enough to show that the derivative of $y = -\log(x)$ is strictly increasing. 
 \begin{equation}
     {d^2 \over dx^2} \left(-\log(x)\right) = \frac{1}{x^2} >0 \text{ for } x>0
 \end{equation}
@@ -140,20 +154,43 @@ Since the second derivative of $f(x) = -\log(x)$ is positive definite within the
 This implies that $f^\prime$ is strictly increasing.$\blacksquare$
 
 
-From the claim, one can show that $D_{KL}>0$ for different probability mass function $p, q$. Furthermore, $D_{KL}=0$ \textit{if and only if} $p = q$.  
-
+From the claim, one can show that $D_{KL}>0$ for different probability mass function $p, q$. Let $I_0$ be the set of index that $p_i \neq q_i$. Since $p\neq q$, $I_0 \neq \varnothing$.
 \begin{equation}
-    -D_{KL}(p||q) = -\sum_i p_i\log{\frac{p_i}{q_i}} = \mathbb{E}_{p}\left[\log{\frac{q_i}{p_i}}\right] < \log{\mathbb{E}_p\left[\frac{q_i}{p_i}\right]} = \log q_i \le \log 1 = 0 
+    -D_{KL}(p||q) = -\sum_{i\in I_0} p_i\log{\frac{p_i}{q_i}} = \mathbb{E}_{p}\left[\log{\frac{q_i}{p_i}}\right] < \log{\mathbb{E}_p\left[\frac{q_i}{p_i}\right]} = \log q_i \le \log 1 = 0 
     \label{eqn8}
 \end{equation}
 
-If $p=q$, then, 
+Furthermore, $D_{KL}=0$ \textit{if and only if} $p = q$. If $p=q$, then, 
 \begin{equation}
     D_{KL}(p||q) = \sum_i p_i \log{\frac{p_i}{q_i}} = \sum_i p_i \log{1} = 0
 \end{equation}
-Since if $p\neq q$, we can apply the formulation made in equation \ref{eqn8}, $D_{KL}$ never be zero. 
-\section{}
-\section{}
+To prove the other direction, suppose
+\begin{equation}
+    D_{KL}(p||q) = 0 = \sum_i p_i \log{\frac{p_i}{q_i}}
+\end{equation}
+Since $p_i\ge 0$, there is some index that $p_i = 0$ or $\log{\frac{p_i}{q_i}} = 0$. For the indices that $\log{\frac{p_i}{q_i}} = 0$
+it is trivial that $p_i = q_i$. Let such index set as $I_0$ and whole index set as $I$. To sum up,
+\begin{align*}
+    p_i &= q_i \text{ for } i \in I_0 \\
+    p_i &= 0 \text{ for } i \in I/I_0
+\end{align*}
+However, now, I'll show that this implies $p_i = q_i$ for $i \in I$.
+
+\begin{align*}
+    1 &= \sum_{i\in I } p_i = \sum_{i\in I}q_i \\
+    &= \sum_{i\in I_0} p_i + \sum_{i \in I/I_0} p_i = \sum_{i\in I_0} p_i \\
+    &= \sum_{i\in I_0} q_i + \sum_{i \in I/I_0} q_i = \sum_{i \in I_0} p_i + \sum_{i \in I/I_0} q_i
+\end{align*}
+Cancelling $\sum_{i\in I_0} p_i$, 
+\begin{equation}
+    \sum_{i\in I/I_0} q_i = 0
+\end{equation}
+which implies $q_i = 0$ for $i\in I/I_0$.Thus, $p_i = q_i$ for $\forall i \in I$.
+
+To sum up, $D_{KL}(p||q) = 0$ \textit{if and only if} $p = q$. For different probability mass function, $D_{KL} > 0$.(Solution of problem 5)
+Considering both results in one, $D_{KL} \ge 0$ for any probability mass function.(Solution of problem 4) 
+
+\section*{6}
 This problem can be solved easily by considering the each element of the gradient vector. Taking $\odot$ into account, considering elementwisely is more efficient. Thus, it is suffient to show that the $j$th component of left hand side is equal to that of right hand side one. Please note that the second equality of $\nabla_b, \nabla_a$ are trivial by refering that multiplying diagonal matrix to a vector is identical to multipyling diagonal entry to each vector element. 
 
 \begin{align*}
@@ -175,8 +212,8 @@ This problem can be solved easily by considering the each element of the gradien
     &= \sum_i u_i \sigma^\prime(a_ix + b_i)\delta_{ij}x_i\\
     &= u_j \sigma^\prime(a_jx + b_j)x_j
 \end{align*}
-
-\section{}
+\clearpage
+\section*{7}
 I used aformentioned code to implement SGD via SVM. The figure \ref{fig4} shows the results of the following code. As the figure depicted, training is successful. To be specific, the blue one, which learnd from only a epoch does not approximate the true function, well. However, as epoch increases, our model becomes well representation of the true function.  
 \begin{python}
 import numpy as np
@@ -239,19 +276,9 @@ plt.savefig('plot.png')
 \end{python}
 
 
-\begin{figure}[!h]
-    \begin{center}
-        \subfigure{
-            \includegraphics{fig/prob7.png}
-        }
-        \subfigure{
-            \includegraphics{fig/prob7_2.png}
-        }
-    \end{center}
-    \label{fig4}
-    \caption{(a) The result of SGD training. One can notice that as SGD learned more, the $f_\theta$ became more similar to true function. (b) This figure shows that the SGD train was success. }
-\end{figure}
 
+
+\clearpage
 \appendix
 \section{}
 \begin{python}
@@ -297,7 +324,6 @@ for _ in range(epoch) :
         train_loss.backward() # calculate graident via backpropagation
         optimizer.step() # update the parameteres
     losses.append(np.mean([x.detach().numpy() for x in tmp_losses]))
-    
 \end{python}
 \section{}
 \begin{python}
@@ -333,10 +359,13 @@ for _ in range(epoch) :
         # Sampling
         idx = randint(0, N-1)
         target, label = X[idx], Y[idx]
+        output = model.output(target)
+
+        target = np.append(target,1)
         
-        train_loss = loss_function(model.output(target), label)
+        train_loss = loss_function(output, label)
         tmp_losses.append(train_loss)
-        grad = (1-train_loss)*label*np.append(target,label)
+        grad = - label*target*1/(1+np.exp(label*output))
         model.update_weight(grad,lr = lr)
     losses.append(np.mean([x for x in tmp_losses]))
 \end{python}
@@ -352,8 +381,8 @@ N,p = 30,20
 np.random.seed(0)
 X = np.random.randn(N,p)
 Y = 2*np.random.randint(2,size = N)-1
-lr = 1e-3
-epoch = 500
+lr = 1e-4
+epoch = 5000
 regularizer = 0.1 # lambda
 class SVM(nn.Module):
     def __init__(self,input_dim = p):
@@ -366,17 +395,19 @@ class SVM(nn.Module):
 model = SVM()
 optimizer = torch.optim.SGD(model.parameters(), lr=lr) 
 svm_losses = []
-cnt = 0
+cnt= 0
 for _ in range(epoch) :
     tmp_losses = []
     for _ in range(p):
         # Sampling
         idx = randint(0, N-1)
         target, label = X[idx], Y[idx]
-
-        optimizer.zero_grad()
         
+        optimizer.zero_grad()
+        if label*model(torch.FloatTensor(target))==1:
+            cnt+=1
         train_loss = torch.clamp(1-label*model(torch.FloatTensor(target)),min = 0) + regularizer*model.linear.weight@model.linear.weight.T
+        # train_loss = loss_function(torch.FloatTensor(target),label)
         train_loss.requires_grad_(True)
         tmp_losses.append(train_loss)
         train_loss.backward() # calculate graident via backpropagation
@@ -412,7 +443,7 @@ class SVM():
         return np.max([0, 1-y*self.output(x)]) + self.weight@self.weight.T *regularizer
     
     def loss_prime(self, x,y):
-        x = np.append(x,y)
+        x = np.append(x,1)
         if y*self.output(x) <1 : 
             return -y*x +2*self.regularizer*self.weight
         else:
@@ -427,7 +458,7 @@ for _ in range(epoch):
     for _ in range(p):
         idx = randint(0,N-1)
         input,label = X[idx], Y[idx]
-        z = model.output(np.append(input,label))
+        z = model.output(np.append(input,1))
         if z==1:
             cnt+=1
         train_loss = model.loss_function(input, label)
@@ -441,6 +472,7 @@ plt.plot(range(epoch), np.abs(svm_losses))
 plt.xlabel("Epoch",fontsize = 20)
 plt.ylabel("Loss",fontsize = 20)
 plt.show()
+print(cnt)
 print(cnt)
 \end{python}
 \section{}

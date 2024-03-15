@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.9)  13 MAR 2024 16:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.9)  15 MAR 2024 16:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -670,7 +670,7 @@ Package: appendix 2020/02/08 v1.2c extra appendix facilities
 \c@@ppsavesec=\count348
 \c@@ppsaveapp=\count349
 )
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 37.
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 38.
  (c:/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count350
@@ -678,30 +678,30 @@ File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
 ) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for LUC/nanummj/m/n on input line 37.
-LaTeX Font Info:    Trying to load font information for LUC+nanummj on input line 37.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for LUC/nanummj/m/n on input line 38.
+LaTeX Font Info:    Trying to load font information for LUC+nanummj on input line 38.
  (c:/texlive/2023/texmf-dist/tex/latex/nanumtype1/lucnanummj.fd
 File: lucnanummj.fd 2013/02/12 v0.1 Nanum Myeongjo font definitions
 )
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
  (c:/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count351
@@ -729,11 +729,11 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )) (c:/texlive/2023/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 37.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 38.
 
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into your preamble.
- on input line 37.
+ on input line 38.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -769,28 +769,34 @@ Package pgfplots Warning: running in backwards compatibility mode (unsuitable ti
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 37.
+Package hyperref Info: Link coloring OFF on input line 38.
 (./report.out) (./report.out)
 \@outlinefile=\write5
 \openout5 = `report.out'.
 
 \c@lstlisting=\count357
-<../hw2/fig/prob1.png, id=57, 419.8887pt x 325.215pt>
+
+
+Package hyperref Warning: Suppressing empty link on input line 45.
+
+
+Package hyperref Warning: Suppressing empty link on input line 45.
+
+<../hw2/fig/prob1.png, id=27, 419.8887pt x 322.3242pt>
 File: ../hw2/fig/prob1.png Graphic file (type png)
 <use ../hw2/fig/prob1.png>
-Package pdftex.def Info: ../hw2/fig/prob1.png  used on input line 50.
-(pdftex.def)             Requested size: 209.94383pt x 162.6071pt.
-<../hw2/fig/prob2.png, id=59, 419.8887pt x 322.3242pt>
+Package pdftex.def Info: ../hw2/fig/prob1.png  used on input line 51.
+(pdftex.def)             Requested size: 209.94383pt x 161.1617pt.
+<../hw2/fig/prob2.png, id=29, 419.8887pt x 322.3242pt>
 File: ../hw2/fig/prob2.png Graphic file (type png)
 <use ../hw2/fig/prob2.png>
 Package pdftex.def Info: ../hw2/fig/prob2.png  used on input line 67.
 (pdftex.def)             Requested size: 209.94383pt x 161.1617pt.
-<../hw2/fig/prob2_2.png, id=60, 419.8887pt x 325.215pt>
+<../hw2/fig/prob2_2.png, id=30, 419.8887pt x 322.3242pt>
 File: ../hw2/fig/prob2_2.png Graphic file (type png)
 <use ../hw2/fig/prob2_2.png>
 Package pdftex.def Info: ../hw2/fig/prob2_2.png  used on input line 70.
-(pdftex.def)             Requested size: 209.94383pt x 162.6071pt.
-
+(pdftex.def)             Requested size: 209.94383pt x 161.1617pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -806,12 +812,12 @@ LaTeX Font Info:    Trying to load font information for U+wasy on input line 80.
  (c:/texlive/2023/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 )
-<../hw2/fig/prob3.png, id=62, 403.9893pt x 298.4751pt>
+<../hw2/fig/prob3.png, id=32, 403.9893pt x 298.4751pt>
 File: ../hw2/fig/prob3.png Graphic file (type png)
 <use ../hw2/fig/prob3.png>
 Package pdftex.def Info: ../hw2/fig/prob3.png  used on input line 86.
 (pdftex.def)             Requested size: 201.99416pt x 149.23718pt.
-<../hw2/fig/prob3_2.png, id=63, 397.485pt x 302.0886pt>
+<../hw2/fig/prob3_2.png, id=33, 397.485pt x 302.0886pt>
 File: ../hw2/fig/prob3_2.png Graphic file (type png)
 <use ../hw2/fig/prob3_2.png>
 Package pdftex.def Info: ../hw2/fig/prob3_2.png  used on input line 89.
@@ -820,35 +826,48 @@ Package pdftex.def Info: ../hw2/fig/prob3_2.png  used on input line 89.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[1
-
-{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <../hw2/fig/prob1.png>] [2 <../hw2/fig/prob2.png> <../hw2/fig/prob2_2.png> <../hw2/fig/prob3.png> <../hw2/fig/prob3_2.png>]
-
-Package amsmath Warning: Foreign command \over;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 137.
-
-(c:/texlive/2023/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2023/02/27 1.9 listings language file
-) [3]
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <8> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 182.
-<fig/prob7.png, id=116, 394.5942pt x 298.4751pt>
+<fig/prob7.png, id=34, 394.5942pt x 298.4751pt>
 File: fig/prob7.png Graphic file (type png)
 <use fig/prob7.png>
-Package pdftex.def Info: fig/prob7.png  used on input line 246.
-(pdftex.def)             Requested size: 394.59322pt x 298.47437pt.
-<fig/prob7_2.png, id=117, 419.8887pt x 322.3242pt>
+Package pdftex.def Info: fig/prob7.png  used on input line 99.
+(pdftex.def)             Requested size: 197.2966pt x 149.23718pt.
+<fig/prob7_2.png, id=35, 419.8887pt x 322.3242pt>
 File: fig/prob7_2.png Graphic file (type png)
 <use fig/prob7_2.png>
-Package pdftex.def Info: fig/prob7_2.png  used on input line 249.
-(pdftex.def)             Requested size: 419.88768pt x 322.32341pt.
-
+Package pdftex.def Info: fig/prob7_2.png  used on input line 102.
+(pdftex.def)             Requested size: 209.94383pt x 161.1617pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[4] [5 <./fig/prob7.png> <./fig/prob7_2.png>] [6] [7]
-LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 453.
+[1
+
+{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <../hw2/fig/prob1.png>] [2 <../hw2/fig/prob2.png> <../hw2/fig/prob2_2.png> <../hw2/fig/prob3.png> <../hw2/fig/prob3_2.png> <./fig/prob7.png> <./fig/prob7_2.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 131--133
+
+ []
+
+
+Package amsmath Warning: Foreign command \over;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 151.
+
+[3
+
+] [4]
+
+Package hyperref Warning: Suppressing empty link on input line 217.
+
+(c:/texlive/2023/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2023/02/27 1.9 listings language file
+)
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <8> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 219.
+ [5
+
+] [6
+
+] [7]
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 485.
  (c:/texlive/2023/texmf-dist/tex/latex/base/ts1cmtt.fd
 File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 ) [8{c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [9] (./report.aux)
@@ -857,21 +876,21 @@ LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: D908BDCCFFC98FC120656C52F0939559;428.
+(rerunfilecheck)             Checksum: CE2ACD1A3783AE8D418F6C78D0A45DAA;180.
  ) 
 Here is how much of TeX's memory you used:
  38743 strings out of 474928
- 906497 string characters out of 5763562
- 2471785 words of memory out of 5000000
- 59367 multiletter control sequences out of 15000+600000
+ 906533 string characters out of 5763562
+ 2452785 words of memory out of 5000000
+ 59360 multiletter control sequences out of 15000+600000
  563690 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,9n,103p,771b,2622s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsltt10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb>
-Output written on report.pdf (9 pages, 409976 bytes).
+ 99i,10n,103p,771b,2620s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsltt10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb>
+Output written on report.pdf (9 pages, 427564 bytes).
 PDF statistics:
- 612 PDF objects out of 1000 (max. 8388607)
- 547 compressed objects within 6 object streams
- 351 named destinations out of 1000 (max. 500000)
- 144 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 605 PDF objects out of 1000 (max. 8388607)
+ 536 compressed objects within 6 object streams
+ 358 named destinations out of 1000 (max. 500000)
+ 88 words of extra memory for PDF output out of 10000 (max. 10000000)
 
