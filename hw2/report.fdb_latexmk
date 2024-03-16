@@ -1,11 +1,11 @@
 # Fdb version 4
-["pdflatex"] 1710555433 "/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw2/report.tex" "report.pdf" "report" 1710555434 0
-  "../hw2/fig/prob1.png" 1710555413 30148 b07aa99aeaf65b92c0e1cc403d48ea7c ""
-  "../hw2/fig/prob2.png" 1710555361 38181 5defe6b2231351ebb53f4c1b22516056 ""
-  "../hw2/fig/prob2_2.png" 1710555431 25263 18ba64d90ba1dce792367796672063f8 ""
+["pdflatex"] 1710557719 "/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw2/report.tex" "report.pdf" "report" 1710557720 0
+  "../hw2/fig/prob1.png" 1710557366 28165 3891cbdfdb738a32bedc0ade51c7a393 ""
+  "../hw2/fig/prob2.png" 1710557477 23139 33c243c7beaba9a31b726e2ed8a62f1e ""
+  "../hw2/fig/prob2_2.png" 1710557401 33635 aae59a04433651d93f18d3b8ccd14f24 ""
   "../hw2/fig/prob3.png" 1710253509 12041 66ebe148ef3dd315d130b541c7c4428f ""
   "../hw2/fig/prob3_2.png" 1710253768 13363 68cc82ca337a6f88176696a5e5e00a2f ""
-  "/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw2/report.tex" 1710555290 19397 aefd64c4d1b86db0c75a275c3ffdbf69 ""
+  "/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw2/report.tex" 1710557718 21930 93ccd5baacffddd97ddf0cf6a47cd6af ""
   "/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1678549815 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/map/fontname/texfonts.map" 1678549815 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map" 1678549815 4609045 74543da1ab9350ba886fce0af49a2cfd ""
@@ -247,9 +247,9 @@
   "/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-var/web2c/pdftex/pdflatex.fmt" 1678549815 7884066 53a9aad02a5b14fbfbcc78ec177fdd6d ""
   "fig/prob7.png" 1710321487 73112 86e24028b2d36a1904c625f5d0c5dc98 ""
   "fig/prob7_2.png" 1710321487 35140 f35d351674aa1b5bc4b781fcf92cc68c ""
-  "report.aux" 1710555434 2912 1e76a3853a28f59bf0305d978ac62600 "pdflatex"
-  "report.out" 1710555434 180 ce2acd1a3783ae8d418f6c78d0a45daa "pdflatex"
-  "report.tex" 1710555290 19397 aefd64c4d1b86db0c75a275c3ffdbf69 ""
+  "report.aux" 1710557720 2995 4562f82c7d744ceb900814478d512eef "pdflatex"
+  "report.out" 1710557720 652 896c22f93f002cab1b377af527848f4f "pdflatex"
+  "report.tex" 1710557718 21930 93ccd5baacffddd97ddf0cf6a47cd6af ""
   (generated)
   "report.aux"
   "report.log"
