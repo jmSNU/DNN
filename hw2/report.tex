@@ -44,7 +44,7 @@ I'll focus on the result of optimization and the comparison to both implmentatio
 I refer the code given by lecture to implement the SGD with logistic regression. The result of this code is 
 described in figure \ref{fig1}. As figure \ref{fig1} depicted, both implementation succeeded convergence, since their losses were decreasing and saturated.
 Since the algorithm without torch and optimizer is too naive, the performace of SGD without torch is worse than that with torch. To be specific, 
-the result drawn by SGD without torch has larger loss and sizeable variance. I guess the optimizer torch using is more sophisticated and effective. 
+the result drawn by SGD without torch has large variance. I guess the optimizer torch using is more sophisticated and effective. This tendency kept appearing the following problems.
 
 \begin{figure}[!h]
     \begin{center}
@@ -55,10 +55,10 @@ the result drawn by SGD without torch has larger loss and sizeable variance. I g
 \end{figure}
 
 \section*{2}
-Simiar to problem 1, both algorithm were successful to converge. Surprisingly, in this problem, my own SGD algorithm outperform the implementation with torch.
-I conjecture that this outperformace is from the issue of hyperparameter tuning. At the first, I suspect that the SGD in torch hit the non-differentiable point of ReLU function.
+Simiar to problem 1, both algorithm were successful to converge. In this problem, my own SGD algorithm converged but not to zero, unlike the other optimization algorithms.
+I conjecture that this is from the issue of hyperparameter tuning.
 However, when I counted the number of hit that SGD meet the non-differential point within its training, it result in zero, that is, SGD never meet non-differentiable point in its training process. 
-Furthermore, the optimization with SVM is better than logistic regression with respect to its faster convergence.
+Furthermore, the optimization with SVM is better than logistic regression with respect to its faster convergence and stability.
 
 \begin{figure}[!h]
     \begin{center}
