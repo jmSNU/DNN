@@ -44,7 +44,7 @@ I'll focus on the result of optimization and the comparison to both implmentatio
 I refer the code given by lecture to implement the SGD with logistic regression. The result of this code is 
 described in figure \ref{fig1}. As figure \ref{fig1} depicted, both implementation succeeded convergence, since their losses were decreasing and saturated.
 Since the algorithm without torch and optimizer is too naive, the performace of SGD without torch is worse than that with torch. To be specific, 
-the result drawn by SGD without torch has larger loss and sizeable variance. I guess the optimizer torch using is more sophisticated and effective. 
+the result drawn by SGD without torch has large variance. I guess the optimizer torch using is more sophisticated and effective. This tendency kept appearing the following problems.
 
 \begin{figure}[!h]
     \begin{center}
@@ -55,10 +55,20 @@ the result drawn by SGD without torch has larger loss and sizeable variance. I g
 \end{figure}
 
 \section*{2}
-Simiar to problem 1, both algorithm were successful to converge. Surprisingly, in this problem, my own SGD algorithm outperform the implementation with torch.
-I conjecture that this outperformace is from the issue of hyperparameter tuning. At the first, I suspect that the SGD in torch hit the non-differentiable point of ReLU function.
-However, when I counted the number of hit that SGD meet the non-differential point within its training, it result in zero, that is, SGD never meet non-differentiable point in its training process. 
-Furthermore, the optimization with SVM is better than logistic regression with respect to its faster convergence.
+Simiar to problem 1, both algorithm were successful to converge. In this problem, both implementation success to converge like logistic regression.
+It is noteworthy that the implementation without torch is unstable about 200 epochs rather than the one with torch. 
+Furthermore,I compared the performance of SVM optimization and logistic regression. As figure \ref{fig2} (b) depicted, the optimization with SVM is better than logistic regression with respect to its faster convergence and stability.
+% In this problem, my own SGD algorithm converged but not to zero, unlike the other optimization algorithms.
+% I made several assumptions about the reason of poorness of SVM implementation without torch package
+% First of all, I think this issue came from the non-differentiability of ReLU function and lack of the exception controll on my algorithm.
+% However, when I counted the number of hit that SGD meet the non-differential point within its training, it result in zero, that is, SGD never meet non-differentiable point in its training process. 
+% Next,I conjecture that this is from the issue of hyperparameter tuning and initialization. 
+% The only one that I can revise among the given hyperparameters is learning rate.
+% I've tried almost 20 distinct learning rate but they are not satisfactory.
+% Finally, I'm convinced that this may related with the gradient update.
+% When I print the norm of model weight, my own alrogithm has approximately 10 times larger weight. 
+% Since I implement SGD with batch size 8, the reasonable gradient update of each batch would be the average of gradient accumulated while iterating the batch.
+% Again, this cannot attain the level of optimization with torch. I've tried the random selection among the gathered gradient, which results in similar performance to prior one. 
 
 \begin{figure}[!h]
     \begin{center}
@@ -280,7 +290,7 @@ plt.savefig('plot.png')
 
 \clearpage
 \appendix
-\section{}
+\section{Logistic Regression w/ Torch}
 \begin{python}
 import numpy as np
 import torch
@@ -293,7 +303,9 @@ np.random.seed(0)
 X = np.random.randn(N,p)
 Y = 2*np.random.randint(2,size = N)-1
 lr = 1e-4
-epoch = 5000
+epoch = 10000
+batch_size=8
+
 class LR(nn.Module):
     def __init__(self,input_dim = p):
         super().__init__()
@@ -305,27 +317,39 @@ class LR(nn.Module):
 model = LR()
 
 def logistic_loss(output, target):
-    return -torch.nn.functional.logsigmoid(target*output)
+    return -torch.nn.functional.logsigmoid(target@output)
 
 loss_function = logistic_loss                                                   
 optimizer = torch.optim.SGD(model.parameters(), lr=lr) 
 losses = []
+
+
 for _ in range(epoch) :
     tmp_losses = []
-    for _ in range(N):
+    for _ in range(batch_size):
         # Sampling
-        idx = randint(0, N-1)
-        target, label = X[idx], Y[idx]
+        idx = randint(0, (N-1)//batch_size)
+        input, label = X[idx*batch_size : (idx+1)*batch_size], Y[idx*batch_size : (idx+1)*batch_size]
+        
+        input = torch.FloatTensor(input)
+        label = torch.FloatTensor(label)
+        
+        output = model(input)
 
         optimizer.zero_grad()
 
-        train_loss = loss_function(model(torch.FloatTensor(target)), label)
+        train_loss = loss_function(output, label)
         tmp_losses.append(train_loss)
         train_loss.backward() # calculate graident via backpropagation
         optimizer.step() # update the parameteres
     losses.append(np.mean([x.detach().numpy() for x in tmp_losses]))
+
+plt.plot(range(epoch), np.abs(losses))
+plt.xlabel("Epoch",fontsize = 20)
+plt.ylabel("Loss",fontsize = 20)
+losses_w_torch = losses
 \end{python}
-\section{}
+\section{Logistic Regression w/o Torch}
 \begin{python}
 import numpy as np
 from random import randint
@@ -334,42 +358,51 @@ N,p = 30,20
 np.random.seed(0)
 X = np.random.randn(N,p)
 Y = 2*np.random.randint(2,size = N)-1
-lr = 1e-4
-epoch = 5000
+lr = 3e-4
+epoch = 10000
+batch_size = 8
+
 class LR():
     def __init__(self,input_dim = p):
-        self.weight = np.random.uniform(0,1,input_dim+1) # last row is bias term
+        self.weight = torch.FloatTensor(np.random.uniform(0,1,input_dim+1)) # last row is bias term
     def output(self,x):
-        x = np.append(x,1) # add dummy column that is one
-        return x.T@self.weight
+        return x@self.weight
     def update_weight(self,grad,lr = 1e-4):
         self.weight = self.weight - lr * grad
 
 model = LR()
 
 def logistic_loss(output, target):
-    return np.log(1+np.exp(-target*output))
+    return np.log(1+np.exp(-target@output))
 
 loss_function = logistic_loss                                                   
 losses = []
 
 for _ in range(epoch) :
     tmp_losses = []
-    for _ in range(p):
+    for _ in range(batch_size):
         # Sampling
-        idx = randint(0, N-1)
-        target, label = X[idx], Y[idx]
-        output = model.output(target)
+        idx = randint(0, (N-1)//batch_size)
+        input, label = X[idx*batch_size : (idx+1)*batch_size], Y[idx*batch_size : (idx+1)*batch_size]
 
-        target = np.append(target,1)
+        input = torch.FloatTensor(input)
+        label = torch.FloatTensor(label)
+
+        input = torch.hstack([input,torch.ones((input.size()[0],1))]) # add dummy for bias term
+        output = model.output(input)
+
         
         train_loss = loss_function(output, label)
         tmp_losses.append(train_loss)
-        grad = - label*target*1/(1+np.exp(label*output))
+        grad = - label*input.T@(1/(1+np.exp(label*output)))
         model.update_weight(grad,lr = lr)
-    losses.append(np.mean([x for x in tmp_losses]))
+    losses.append(np.mean(tmp_losses))
+    
+plt.plot(range(epoch), np.abs(losses))
+plt.xlabel("Epoch",fontsize = 20)
+plt.ylabel("loss",fontsize = 20)
 \end{python}
-\section{}
+\section{SVM w/ Torch}
 \begin{python}
 import numpy as np
 import torch
@@ -381,9 +414,11 @@ N,p = 30,20
 np.random.seed(0)
 X = np.random.randn(N,p)
 Y = 2*np.random.randint(2,size = N)-1
-lr = 1e-4
-epoch = 5000
+lr = 3e-5
+epoch = 10000
 regularizer = 0.1 # lambda
+batch_size = 8
+
 class SVM(nn.Module):
     def __init__(self,input_dim = p):
         super().__init__()
@@ -395,26 +430,35 @@ class SVM(nn.Module):
 model = SVM()
 optimizer = torch.optim.SGD(model.parameters(), lr=lr) 
 svm_losses = []
-cnt= 0
+
 for _ in range(epoch) :
     tmp_losses = []
-    for _ in range(p):
+    for _ in range(batch_size):
         # Sampling
-        idx = randint(0, N-1)
-        target, label = X[idx], Y[idx]
+        idx = randint(0, (N-1)//batch_size)
+        input, label = X[idx*batch_size : (idx+1)*batch_size], Y[idx*batch_size : (idx+1)*batch_size]
         
+        input = torch.FloatTensor(input)
+        label = torch.FloatTensor(label)
+
+        output = model(input)
+
         optimizer.zero_grad()
-        if label*model(torch.FloatTensor(target))==1:
-            cnt+=1
-        train_loss = torch.clamp(1-label*model(torch.FloatTensor(target)),min = 0) + regularizer*model.linear.weight@model.linear.weight.T
-        # train_loss = loss_function(torch.FloatTensor(target),label)
+
+        train_loss = torch.clamp(1-label@output,min = 0) + regularizer*model.linear.weight@model.linear.weight.T
         train_loss.requires_grad_(True)
         tmp_losses.append(train_loss)
         train_loss.backward() # calculate graident via backpropagation
         optimizer.step() # update the parameteres
     svm_losses.append(np.mean([x.detach().numpy() for x in tmp_losses]))
+
+plt.plot(range(epoch), svm_losses)
+plt.xlabel("Epoch",fontsize = 20)
+plt.ylabel("Loss",fontsize = 20)
+plt.show()
+losses_torch = svm_losses
 \end{python}
-\section{}
+\section{SVM w/o Torch}
 \begin{python}
 import numpy as np
 from random import randint
@@ -425,45 +469,54 @@ N,p = 30,20
 np.random.seed(0)
 X = np.random.randn(N,p)
 Y = 2*np.random.randint(2,size = N)-1
-lr = 1e-3
-epoch = 5000
+lr = 2e-3
+epoch = 10000
 regularizer = 0.1 # lambda
+batch_size = 8
 
 class SVM():
     def __init__(self,input_dim = p):
         self.weight = np.random.uniform(0,1,input_dim+1) # last row is bias term
         self.regularizer =regularizer
     def output(self,x):
-        return x.T@self.weight
+        return x@self.weight
     def update_weight(self,grad,lr = 1e-4):
         self.weight = self.weight - lr * grad
 
     def loss_function(self, x, y):
-        x = np.append(x,y)
-        return np.max([0, 1-y*self.output(x)]) + self.weight@self.weight.T *regularizer
-    
-    def loss_prime(self, x,y):
-        x = np.append(x,1)
-        if y*self.output(x) <1 : 
-            return -y*x +2*self.regularizer*self.weight
-        else:
-            return 2*self.regularizer*self.weight
+        z = 1 - y * self.output(x)
+        hinge_loss = np.clip(1-label@output,a_min = 0,a_max = None)  # element-wise maximum
+        reg = self.regularizer * self.weight.T@self.weight  # regularization term
+
+        return np.mean(hinge_loss) + reg
 
 model = SVM()
 svm_losses = []
-cnt = 0
 
 for _ in range(epoch):
     tmp_loss = []
-    for _ in range(p):
-        idx = randint(0,N-1)
-        input,label = X[idx], Y[idx]
-        z = model.output(np.append(input,1))
-        if z==1:
-            cnt+=1
-        train_loss = model.loss_function(input, label)
+    for _ in range(batch_size):
+        idx = randint(0,(N-1)//batch_size)
+        input,label = X[idx*batch_size : (idx + 1)*batch_size], Y[idx*batch_size : (idx + 1)*batch_size]
+
+        input = np.hstack([input,np.ones((input.shape[0],1))]) # add dummy for bias term
+
+        output = model.output(input)
+        train_loss = model.loss_function(input,label)
+
+        grad = np.zeros((batch_size,p+1))
+        for i in range(input.shape[0]):
+            tmp_input = input[i]
+            tmp_output = output[i]
+            tmp_label = label[i]
+            if tmp_label*tmp_output<1:
+                grad[i] = -tmp_label*tmp_input
+
+        idx = randint(0,batch_size-1)
+        grad = grad[idx]
+        grad += 2*regularizer*model.weight
+
         tmp_loss.append(train_loss)
-        grad = model.loss_prime(input,label)
         
         model.update_weight(grad=grad, lr = lr)
     svm_losses.append(np.mean(tmp_loss))
@@ -472,8 +525,6 @@ plt.plot(range(epoch), np.abs(svm_losses))
 plt.xlabel("Epoch",fontsize = 20)
 plt.ylabel("Loss",fontsize = 20)
 plt.show()
-print(cnt)
-print(cnt)
 \end{python}
 \section{}
 \begin{python}
