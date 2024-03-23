@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Homebrew) (preloaded format=pdflatex 2024.2.23)  18 MAR 2024 21:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Homebrew) (preloaded format=pdflatex 2024.2.23)  23 MAR 2024 13:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -664,8 +664,14 @@ File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 File: listings.cfg 2023/02/27 1.9 listings configuration
 ))
 Package: listings 2023/02/27 1.9 (Carsten Heinz)
+) (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/bbm-macros/bbm.sty
+Package: bbm 1999/03/15 V 1.2 provides fonts for set symbols - TH
+LaTeX Font Info:    Overwriting math alphabet `\mathbbm' in version `bold'
+(Font)                  U/bbm/m/n --> U/bbm/bx/n on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
+(Font)                  U/bbmss/m/n --> U/bbmss/bx/n on input line 35.
 )
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 36.
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 37.
  (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count346
@@ -673,30 +679,30 @@ File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 ) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for LUC/nanummj/m/n on input line 36.
-LaTeX Font Info:    Trying to load font information for LUC+nanummj on input line 36.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for LUC/nanummj/m/n on input line 37.
+LaTeX Font Info:    Trying to load font information for LUC+nanummj on input line 37.
  (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/nanumtype1/lucnanummj.fd
 File: lucnanummj.fd 2013/02/12 v0.1 Nanum Myeongjo font definitions
 )
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
  (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count347
@@ -718,11 +724,11 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )) (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 36.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 37.
 
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into your preamble.
- on input line 36.
+ on input line 37.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -758,31 +764,73 @@ Package pgfplots Warning: running in backwards compatibility mode (unsuitable ti
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 36.
+Package hyperref Info: Link coloring OFF on input line 37.
 (./report.out) (./report.out)
 \@outlinefile=\write5
 \openout5 = `report.out'.
 
 \c@lstlisting=\count353
+<../hw3/fig/fig1_1.png, id=11, 409.7709pt x 312.2064pt>
+File: ../hw3/fig/fig1_1.png Graphic file (type png)
+<use ../hw3/fig/fig1_1.png>
+Package pdftex.def Info: ../hw3/fig/fig1_1.png  used on input line 45.
+(pdftex.def)             Requested size: 204.88495pt x 156.10281pt.
+<../hw3/fig/fig1_2.png, id=13, 394.5942pt x 298.4751pt>
+File: ../hw3/fig/fig1_2.png Graphic file (type png)
+<use ../hw3/fig/fig1_2.png>
+Package pdftex.def Info: ../hw3/fig/fig1_2.png  used on input line 48.
+(pdftex.def)             Requested size: 197.2966pt x 149.23718pt.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 55.
+ (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 55.
+ (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 55.
+ (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/wasysym/uwasy.fd
+File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
+)
+<../hw3/fig/fig2_1.png, id=16, 409.7709pt x 312.2064pt>
+File: ../hw3/fig/fig2_1.png Graphic file (type png)
+<use ../hw3/fig/fig2_1.png>
+Package pdftex.def Info: ../hw3/fig/fig2_1.png  used on input line 62.
+(pdftex.def)             Requested size: 204.88495pt x 156.10281pt.
+<../hw3/fig/fig2_2.png, id=17, 394.5942pt x 298.4751pt>
+File: ../hw3/fig/fig2_2.png Graphic file (type png)
+<use ../hw3/fig/fig2_2.png>
+Package pdftex.def Info: ../hw3/fig/fig2_2.png  used on input line 65.
+(pdftex.def)             Requested size: 197.2966pt x 149.23718pt.
  [1
 
-{/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}] (./report.aux)
+{/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map} <../hw3/fig/fig1_1.png> <../hw3/fig/fig1_2.png> <../hw3/fig/fig2_1.png> <../hw3/fig/fig2_2.png>]
+Overfull \hbox (5.55347pt too wide) in paragraph at lines 92--95
+[]\OT1/cmr/m/n/10 The pos-i-tiv-ity of soft-max func-tion is triv-ial from $[](\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) \OML/cmm/m/it/10 > \OT1/cmr/m/n/10 0[]\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 R$\OT1/cmr/m/n/10 . Futher-more, since $\U/msb/m/n/10 @\OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 R[] [] \OML/cmm/m/it/10 x \OT1/cmr/m/n/10 =
+ []
+
+[2] [3] (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2023/02/27 1.9 listings language file
+)
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <8> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 208.
+ [4] [5] [6] (./report.aux)
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 9534070C232AA0A3F935CB7C3E3F8D46;35.
+(rerunfilecheck)             Checksum: FA87B8CFF8D763C13AD4E5B0732FFDF4;36.
  ) 
 Here is how much of TeX's memory you used:
- 37207 strings out of 476025
- 901726 string characters out of 5779036
- 1852388 words of memory out of 5000000
- 57115 multiletter control sequences out of 15000+600000
- 513796 words of font info for 37 fonts, out of 8000000 for 9000
+ 38369 strings out of 476025
+ 915622 string characters out of 5779036
+ 2426388 words of memory out of 5000000
+ 58052 multiletter control sequences out of 15000+600000
+ 517572 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,5n,103p,780b,907s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-Output written on report.pdf (1 page, 32497 bytes).
+ 99i,16n,103p,780b,2978s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsltt10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on report.pdf (6 pages, 298333 bytes).
 PDF statistics:
- 36 PDF objects out of 1000 (max. 8388607)
- 26 compressed objects within 1 object stream
- 3 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 360 PDF objects out of 1000 (max. 8388607)
+ 308 compressed objects within 4 object streams
+ 190 named destinations out of 1000 (max. 500000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
