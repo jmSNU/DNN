@@ -1039,6 +1039,9 @@ INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/l3backe
 INPUT ./report.aux
 INPUT report.aux
 INPUT report.aux
+INPUT ./bu.aux
+INPUT bu.aux
+INPUT bu.aux
 OUTPUT report.aux
 INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/nanumtype1/lucnanummj.fd
 INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/nanumtype1/lucnanummj.fd
@@ -1140,7 +1143,16 @@ INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/listing
 INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/tfm/public/cm/cmtt8.tfm
 INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/tfm/public/cm/cmsltt10.tfm
+OUTPUT bu.aux
+INPUT ./report.bbl
+INPUT report.bbl
+INPUT ./report.bbl
+INPUT report.bbl
+INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT report.aux
+INPUT ./bu.aux
+INPUT bu.aux
+INPUT bu.aux
 INPUT ./report.out
 INPUT ./report.out
 INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
@@ -1156,6 +1168,7 @@ INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/publi
 INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsltt10.pfb
 INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
+INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb
 INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
 INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb

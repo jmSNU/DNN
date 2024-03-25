@@ -70,14 +70,13 @@ Such insufficient performance can be verified via the test dataset. In test data
 By adding the gaussian noise in label of train dataset, as figure \ref{fig2} describes, the overall performance of model increases.
 Furthermore, the test loss was $0.15671254694461823$ and accuracy was $0.9313725490196079$, which is much outperform the model trained in the dataset without the noise. 
 I made some hypothesis for this weird phenomenon. In this problem, there is about 4000 parameters to be learned, while the number of the data is about 500.
-This is a common setting that the model is overfitted. Overfitted model,like the model in problem 1, has really high accuracy in the train data, but the extremely low accuracy in the test data. 
-Checking the figure \ref{fig1}, the model has quite good precision at the center, while not in the border. This implies that model is too focus on the interval that the data is concentrated and ignore the details. 
-This problem can be solved via adding appropriate noise on the train dataset, as figure \ref{fig2} shows. In figure \ref{fig2}, the model makes an effort to focus on the center of the data and sufficiently fit the data in border. 
-From these examples, we can conjecture that adding some noise or training the model with noised data(which is the common setting of DL) can keep model from being overfitted. 
-
-
-
-
+This is a common setting that the model is overfitted. 
+I conjectured that the result of problem is ruined by overfiiting. 
+To avoid overfitting, in practice, regularization is inevitable.
+As figure \ref{fig2} shows, adding noise on the label can relax the overfitting and imporves the performace. 
+This implies that data augmented with noise is functioned as a regularizer. 
+This phenomenon was reported by Chris M. Bishop\cite{bishop1995}.
+This is advantageous for DL engineer since the data we encounter in the real world is generally noised and they are not required to control such noise too robust.
 
 
 \section*{3}
@@ -191,7 +190,7 @@ This enables us to represent every weight into the element of $C$.
 \begin{align*}
     A_{i}^{(jk)} &= 2C_{i}^{(jk)} \\ b_{i}^{(j)} &= \sum_k C_{i}^{(jk)} \\ d_i^{(j)} &= 2\sum_k C_{i}^{(jk)}
 \end{align*}
-Imposing the contraints above, both MLP become identical for each layer. However, this is only theoratically valid, which is not practically happened.
+Imposing the contraints above, both MLP become identical for each layer. 
 
 \section*{6,7}
 Let's denote the input to the $j$th $ReLU$ function at the $k$th iteration as $z^{(k)}_j = a^{(k)}_jX_i + b^{(k)}_j$. Since the $j$th $ReLU$output is dead at the initialization, we have $a^{(0)}_jX_i + b^{(0)}_j<0$ for all $i=1,\cdots,N$. Hence, the output of the $j$th ReLU is $f(z^{(0)}) = 0$.
@@ -369,5 +368,6 @@ Therefore, eventhough $j$th output is dead, it still has a room to be alive befo
     '''
     
     \end{python}
-
+\bibliographystyle{unsrt}
+\bibliography{reference}
 \end{document}
