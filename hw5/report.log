@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Homebrew) (preloaded format=pdflatex 2024.2.23)  28 MAR 2024 19:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Homebrew) (preloaded format=pdflatex 2024.2.23)  1 APR 2024 17:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/report_template.tex"
-(/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/report_template.tex
+**"/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw5/report.tex"
+(/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw5/report.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-22> (/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
@@ -670,8 +670,8 @@ Package translations Info: No language package found. I am going to use `english
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count346
 \l__pdf_internal_box=\box77
-) (./report_template.aux)
-\openout1 = `report_template.aux'.
+) (./report.aux)
+\openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
 LaTeX Font Info:    ... okay on input line 36.
@@ -759,27 +759,27 @@ Package pgfplots Warning: running in backwards compatibility mode (unsuitable ti
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 36.
-(./report_template.out) (./report_template.out)
+(./report.out) (./report.out)
 \@outlinefile=\write5
-\openout5 = `report_template.out'.
+\openout5 = `report.out'.
 
 \c@lstlisting=\count353
  [1
 
-{/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}] (./report_template.aux)
-Package rerunfilecheck Info: File `report_template.out' has not changed.
+{/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}] (./report.aux)
+Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: 9534070C232AA0A3F935CB7C3E3F8D46;35.
  ) 
 Here is how much of TeX's memory you used:
  37207 strings out of 476025
- 901867 string characters out of 5779036
+ 901726 string characters out of 5779036
  1852388 words of memory out of 5000000
  57115 multiletter control sequences out of 15000+600000
  513796 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,5n,103p,785b,907s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,5n,103p,780b,907s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-Output written on report_template.pdf (1 page, 32360 bytes).
+Output written on report.pdf (1 page, 32548 bytes).
 PDF statistics:
  36 PDF objects out of 1000 (max. 8388607)
  26 compressed objects within 1 object stream
