@@ -37,7 +37,50 @@
 \maketitle
 
 \section{}
+In this problem, I dervied the representation of each gradient, considering the result of problem6 at hw4.
+Considering the forward pass in the first half of the code, the following relation is held, which does not agree to the notation in this problem.
+\begin{equation*}
+    y[l] = S(A_{list}[l-1]@y[l-1] + b_{list}[l-1])
+\end{equation*}
+Furthermore, due to the confusion from the notation, I introduced following definitions.
+\begin{equation*}
+    db_l = {d\over db_l}loss, \quad dy_l = {d\over dy_l}loss, \quad  dA_l = {d\over dA_l}loss
+\end{equation*}
+According to those notations, the code that calculate the each gradient can be implemented, easily.
+\begin{align*}
+    db_l &= {d\over db_l}loss \\
+    &= {d\;loss\over dy_{l+1}} {d y_{l+1}\over db_l} \\
+    &= dy_{l+1}{d \over db_l} S(A_ly_l + b_l)\\
+    &= dy_{l+1}\text{diag}(S^\prime(A_ly_l + b_l))
+\end{align*}
 
+\begin{align*}
+    dA_l &= {d\over dA_l}loss \\
+    &= {d\;loss\over dy_{l+1}} {d y_{l+1}\over dA_l} \\
+    &= dy_{l+1}{d \over dA_l} S(A_ly_l + b_l)\\
+    &= y_ldy_{l+1}\text{diag}(S^\prime(A_ly_l + b_l)) \\
+    &= y_ldb_l
+\end{align*}
 
+\begin{align*}
+    dy_l &= {d\over dy_l}loss \\
+    &= {d\;loss\over dy_{l+1}} {d y_{l+1}\over dy_l} \\
+    &= dy_{l+1}{d \over dy_l} S(A_ly_l + b_l)\\
+    &= dy_{l+1}\text{diag}(S^\prime(A_ly_l + b_l))A_l \\
+    &= db_lA_l
+\end{align*}
 
+\section*{2}
+This problem can be solved by applying the chain rule, repeatedly.
+\begin{align}
+    {\partial y_L \over \partial b_i} &= {\partial y_L \over \partial y_{L-1}} {\partial y_{L-1}\over \partial y_{L-2}}\cdots {\partial y_{i+1}\over \partial y_{i}}{\partial y_i \over \partial b_i} \\
+    &= \text{diag}(\tilde{y_L})A_L \text{diag}(\sigma^\prime(\tilde{y}_{L-1}))A_{L-1}\cdots\text{diag}(\sigma^\prime(\tilde{y}_{i+1}))A_{i+1}\text{diag}(\sigma^\prime(\tilde{y}_i))
+\end{align} 
+\begin{align}
+    {\partial y_L \over \partial A_i} &= \text{diag}(\sigma^\prime(\tilde{y}_i))\left({\partial y_L \over \partial y_i}\right)^Ty_{i-1}^T
+\end{align}
+where ${\partial y_L \over \partial y_i} = {\partial y_L \over \partial y_{L-1}} {\partial y_{L-1} \over \partial y_{L-2}} \cdots {\partial y_{i+1} \over \partial y_i} = \text{diag}(\tilde{y}_L)A_L\text{diag}(\sigma^\prime(\tilde{y}_{L-1}))A_{L-1} \cdots \text{diag}(\sigma^\prime(\tilde{y}_{i+1}))A_{i+1}$.
+
+As $A_i$ is small, ${\partial y_L \over \partial b_i}, {\partial y_L \over \partial y_i}$ become extremely small, since $\text{diag}(\tilde{y}_i)$'s elements are moderate and $A_i$ keep being multiplied.
+In addition, 
 \end{document}
