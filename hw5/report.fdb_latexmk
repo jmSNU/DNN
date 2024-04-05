@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1712231700 "/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw5/report.tex" "report.pdf" "report" 1712231701 0
-  "/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw5/report.tex" 1712231700 20988 8099c4a40053bd817257db9789f7b50f ""
+["pdflatex"] 1712346538 "/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw5/report.tex" "report.pdf" "report" 1712346539 0
+  "/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw5/report.tex" 1712346538 20994 1d2e4c4edea75566066fb25dd2ad04c9 ""
   "/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/map/fontname/texfonts.map" 1678549815 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map" 1678549815 4609045 74543da1ab9350ba886fce0af49a2cfd ""
   "/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1678549815 1004 54797486969f23fa377b128694d548df ""
@@ -258,9 +258,9 @@
   "fig/hist1.png" 1712090603 13580 36e09215ce2bafefa62982e1cabf0312 ""
   "fig/hist2.png" 1712090614 12705 bd4cd5445f5d0f4ffa0e48c33b04aeeb ""
   "fig/image.png" 1712086008 151977 b37f2cf2151e2c5284d4e9ec5d3aa0a5 ""
-  "report.aux" 1712231701 4445 12ec05535197305391a7b371bd6880ac "pdflatex"
-  "report.out" 1712231701 71 5ed6eb527ae25b8d464b8782c1d825bc "pdflatex"
-  "report.tex" 1712231700 20988 8099c4a40053bd817257db9789f7b50f ""
+  "report.aux" 1712346539 4445 12ec05535197305391a7b371bd6880ac "pdflatex"
+  "report.out" 1712346539 71 5ed6eb527ae25b8d464b8782c1d825bc "pdflatex"
+  "report.tex" 1712346538 20994 1d2e4c4edea75566066fb25dd2ad04c9 ""
   (generated)
   "report.aux"
   "report.log"

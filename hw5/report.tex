@@ -178,7 +178,7 @@ Then, by subtracting equation \ref{eqn5} from \ref{eqn4}, one can see that $\the
 \end{align*}
 \section*{4}
 As figure \ref{fig1} describe, passing a single layer increases the receptive field of node in that layer by $k-1$.(Yello and sky-blue triangle in figure \ref{fig1}) Thus, 
-The size of receptive field of $y_1[k,i,j]$ is 5 and it depends on $X[k,i-2:i+3,j-2:j+3]$.
+The size of receptive field of $y_1[k,i,j]$ is 5 and it depends on $X[0:2,i-2:i+3,j-2:j+3]$.
 \begin{figure}[!h]
     \begin{center}
         \includegraphics[scale = 0.2]{./fig/image.png}
@@ -186,10 +186,10 @@ The size of receptive field of $y_1[k,i,j]$ is 5 and it depends on $X[k,i-2:i+3,
     \caption{Simple 1D convolution example whose kernel size is 3 that shows the receptive field with fluorescent colors. After applying two convolutions, the last output is describing the pooling process with kernel size 2, striding 2.}
     \label{fig1}
 \end{figure}
-As the green triangle in figure \ref{fig1} depicts, the max-pooling with striding 2 increases the receptive field of each node by 1. This implies that $y_2[k,i,j]$ depends on $X[k,2i-2:2i+4,2j-2:2j+4]$.
+As the green triangle in figure \ref{fig1} depicts, the max-pooling with striding 2 increases the receptive field of each node by 1. This implies that $y_2[k,i,j]$ depends on $X[0:2,2i-2:2i+4,2j-2:2j+4]$.
 Please note that factor 2 in front of $i,j$ results from the layer after the pooling which is downsamled by factor of 2. Also, note that factoring does not affect to the size of receptive field(it is still 6).
 Taking this process into account, the dependence of $y_3$ is trivial, except the fact that the increment of receptive field's size is $2(k-1)$, rather than $k-1$. This is because maxpooling operation downsized the successive layer by half with respect to the original image. 
-Thus, the size of receptive field of $y_3[k,i,j]$ is 6 + 4 + 4 + 2 = 16. Again, considering the target index is doubled with respect to input image after passing through the maxpool layers, $y_2[k,i,j]$ depends on $X[k,4i-6:4i+10,4j-6:4j+10]$.
+Thus, the size of receptive field of $y_3[k,i,j]$ is 6 + 4 + 4 + 2 = 16. Again, considering the target index is doubled with respect to input image after passing through the maxpool layers, $y_2[k,i,j]$ depends on $X[0:2,4i-6:4i+10,4j-6:4j+10]$.
 
 \section*{5}
 I used following two formulae to solve this problem. Please note that I calculated FLOPS(Floating Point Operations) not MACs(Multy-ACCumulated).
