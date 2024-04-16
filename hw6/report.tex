@@ -1,0 +1,147 @@
+
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{kotex}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{titling}
+\setlength{\droptitle}{-2cm}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{siunitx} 
+\usepackage{enumerate} 
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{tikz,pgfplots}
+\usepackage{wasysym}
+\usepackage{geometry}
+\usepackage{authblk}
+\usepackage{kotex}
+\usepackage{bibunits}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{pythonhighlight}
+
+\geometry{
+    a4paper,
+    total={170mm,257mm},
+    left=20mm,
+    top=20mm,
+}
+
+\title{\textbf{Mathematical Foundation of DNN : HW 6}}
+\author{Jeong Min Lee}
+
+\begin{document}
+\maketitle
+
+\section*{1}
+Let $D_p(\cdot)$ define as follows:
+
+\begin{equation}
+    D_p(x) = \begin{cases}
+        0 \text{ with probability }p \\
+        x/(1-p) \text{ with probability } 1-p
+    \end{cases}
+\end{equation}
+
+For the case of ReLU and LeakyReLU, the dropout can be commutative. Let $f$ denote the ReLU Leaky ReLU.
+\begin{align*}
+    D_p(f(h)) &= \begin{cases}
+        0 \text{ with probability } p \\
+        f(h)/(1-p) \text{ with probability } 1-p
+    \end{cases} \; (\because \text{the defition of dropout})\\&= \begin{cases}
+        0 \text{ with probability } p \\
+        f(h/(1-p)) \text{ with probability } 1-p
+    \end{cases} \; (\because f(ax) = af(x)\; \forall x, a>0) \\ &= f(D_p(h))
+\end{align*}
+However, for the sigmoid, we cannot do same thing to the discussion above since it is not homogeneous function. 
+In addition, there is a trivial counter-example. Consider the hidden layer with element $[0,0,1]$. If we do dropout first, 
+the last node can be zero with probability $p$ and it results in $[0,0,0]$. Then, after applying the sigmoid function, the all three elements in the output must be same. 
+However, if we do sigmoid activation first, since $Sigmoid(0) \neq 0 $, the intermediate layer would be $[\sigma(0),\sigma(0),\sigma(1)]$. 
+Although dropout cannot change their value to be evenly, they are not same to the result of Dropout-Sigmoid.
+
+\section*{2}
+
+\section*{3}
+I refer to the result of HW4-6 to solve this problem. 
+\subsection*{i}
+From the problem 6-(a) in HW4, we saw that ${\partial\over \partial y_{l-1}} \sigma(A_ly_{l-1}) + b_l = \text{diag}(\sigma^\prime(A_ly_{l-1} + b_l))A_l$. Thus,
+\begin{align*}
+    y_l &= \sigma(A_ly_{l-1} + b_l) + y_{l-1} \\
+    {\partial y_l \over \partial y_{l-1}} &= \text{diag}\left(\sigma^\prime(A_ly_{l-1} + b_l)\right)A_l + I_m
+\end{align*}
+Here, $I_m$ denotes the identity with dimension $m$.
+\subsection*{ii}
+Since $b_l$ and $A_l$ are independent to $y_{l-1}$, we can directly use the result of problem 6 at HW4(with simple chain rule).
+\begin{align*}
+    {\partial y_L\over \partial b_l} &= {\partial y_L \over \partial y_l} {\partial y_l \over \partial b_l} = {\partial y_L \over \partial y_l} \text{diag}(\sigma^\prime(A_ly_{l-1} + b_l))\\
+    {\partial y_L \over \partial A_l} &= \text{diag}(\sigma^\prime(A_ly_{l-1})+ b_l)\left({\partial y_L \over \partial y_l}\right)^T y_{l-1}^T
+\end{align*}
+
+\subsection*{iii}
+Both ${\partial y_L\over \partial b_i}$ and ${\partial y_L \over \partial A_i}$ contain ${\partial y_L \over \partial y_i}$ term. According to the chain rule, 
+\begin{align*}
+    {\partial y_L\over \partial y_i} = {\partial y_L \over \partial y_{L-1}} \cdot {\partial y_{L-1} \over \partial y_{L-2}}\cdots {\partial y_{i+1} \over \partial y_{i}} = \prod_{k = i+1}^L {\partial y_k \over \partial y_{k-1}} = \prod_{k = i+1}^L \text{diag}\left( \sigma^\prime(A_ky_{k-1} + b_k) \right)A_k + I_m
+\end{align*}
+As the equations above tell, eventhough $A_j = 0 $ for some $j\in \left\{l+1, \cdots, L-1\right\}$ or $\sigma^\prime(A_jy_{j-1} + b_j) = 0$ for some $j \in \left\{l+1,\cdots, L-1\right\}$, the identity matrices are still alive. Thus, the derivatives do not have to be zero.
+Note that the other components in both derivatives also are nonzero, in general.
+
+\section*{4}
+\subsection*{a}
+In this problem, I used the following formula.
+\begin{equation*}
+    \text{trainable parameter} = (\text{kernel size})^2 \times C_{out} \times C_{in} + C_{out}
+\end{equation*}
+The overall calculation of the first convolution layer is as follow.
+\begin{align*}
+    &(128\times 1^2 \times 256 + 128) + (128 \times 3^2 \times 128 + 128) + (256\times 1^2 \times 128 + 256) = 213,504 \\
+\end{align*}
+
+For the second implementation, considering that each path have the same number of the trainable paramters, I calculated the number of trainable paramters for a single path. 
+The whole calculation process is as follow.
+\begin{align*}
+    &(256\times 1^2 \times 4 + 4) + (4 \times 3^2 \times 4 + 4) + (4\times 1^2 \times 256 + 256) = 2456 \\
+    &\therefore 32\times 2456 = 78,592
+\end{align*}
+\subsection*{b}
+\begin{python}
+class STMConvLayer(nn.Module):
+    def __init__(self):
+        super(STMConvLayer, self).__init__()
+        self.conv = nn.ModuleList()
+        for _ in range(32):
+            self.conv.append(
+                nn.Sequential(
+                    nn.Conv2d(256, 4, 1, dtype=torch.float),  # Specify dtype=torch.float
+                    nn.ReLU(),
+                    nn.Conv2d(4, 4, 3, padding=1, dtype=torch.float),  # Specify dtype=torch.float
+                    nn.ReLU(),
+                    nn.Conv2d(4, 256, 1, dtype=torch.float)  # Specify dtype=torch.float
+                )
+            )
+    def forward(self,x): # x : bathced data
+        output = torch.zeros(x.shape, dtype=torch.float)
+        for path in self.conv:
+            output += path(x.float())
+        return output
+\end{python}
+
+\begin{python}
+STMConvLayer(
+  (conv): ModuleList(
+    (0-31): 32 x Sequential(
+      (0): Conv2d(256, 4, kernel_size=(1, 1), stride=(1, 1))
+      (1): ReLU()
+      (2): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (3): ReLU()
+      (4): Conv2d(4, 256, kernel_size=(1, 1), stride=(1, 1))
+    )
+  )
+)
+\end{python}
+
+
+
+\end{document}
