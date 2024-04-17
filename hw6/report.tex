@@ -63,6 +63,49 @@ However, if we do sigmoid activation first, since $Sigmoid(0) \neq 0 $, the inte
 Although dropout cannot change their value to be evenly, they are not same to the result of Dropout-Sigmoid.
 
 \section*{2}
+In this problem, I denote the bold symbol of each variable as the random variable corresponding to it. 
+\begin{equation*}
+    \mathbb{E}[\mathbf{x}^{(i)}] = 0,\quad \mathbb{E}\left[\left(\mathbf{x}^{(i)}\right)^2\right] = 1
+\end{equation*}
+From the PyTorch offficial document, it is important to note the following relations.
+\begin{align*}
+    \mathbf{A_l^{(ij)}} &\sim \mathcal{U}\left(-\sqrt{\frac{3}{n_{l-1}}},\sqrt{\frac{3}{n_{l-1}}}\right)\\
+    \mathbf{b_l^{(i)}} &\sim \mathcal{U}\left(-\sqrt{\frac{1}{n_{l-1}}},\sqrt{\frac{1}{n_{l-1}}}\right)
+\end{align*}
+The relations above imply the following. 
+\begin{align*}
+    \mathbb{E}[\mathbf{A_l^{(ij)}}] &= 0, \quad \mathbb{E}[\mathbf{b_l^{(i)}}] = 0\\ 
+    \mathbb{E}\left[\left(\mathbf{A_l^{(ij)}}\right)^2\right] &= \frac{1}{n_{l-1}}, \quad \mathbb{E}\left[\left(\mathbf{b_l^{(i)}}\right)^2\right] = \frac{1}{3n_{l-1}} 
+\end{align*}
+Then, to derive the mean of $\mathbf{y}_L$, consider the mathematical induction of $\mathbb{E}[\mathbf{y}_l^{(i)}]$.
+For the base case, the mean value of $\mathbf{y}^{(i)}_1$ is zero. 
+\begin{align*}
+    \mathbb{E}[\mathbf{y_1^{(i)}}] &= \sum_{j=1}^{n_0} \mathbb{E}\left[\mathbf{A_l^{(ij)}x^{(j)}}\right] + \mathbb{E}\left[\mathbf{b_1^{(i)}}\right] \\
+    &= \sum_{j=1}^{n_0} \mathbb{E}\left[\mathbf{A_l^{(ij)}}\right]\mathbb{E}\left[\mathbf{x^{(j)}}\right] \\
+    &= 0
+\end{align*}
+Then, for the inductive step, the mean value of $\mathbf{y}^{(i)}_l$ is zero. To proof it, consider the following induction hypothesis: $\mathbb{E}[\mathbf{y}^{(i)}_{l-1}] = 0$.
+\begin{align*}
+    \mathbb{E}[\mathbf{y_l^{(i)}}] &= \sum_{j=1}^{n_{l-1}} \mathbb{E}\left[\mathbf{A_l^{(ij)}y_{l-1}^{(j)}}\right] + \mathbb{E}\left[\mathbf{b_l^{(i)}}\right] \\
+    &= \sum_{j=1}^{n_{l-1}} \mathbb{E}\left[\mathbf{A_l^{(ij)}}\right]\mathbb{E}\left[\mathbf{y_{l-1}^{(j)}}\right] \\
+    &= 0
+\end{align*}
+Next, I'll derive the variance of $\mathbf{y}^{(i)}_l$.
+\begin{align*}
+    \mathbb{E}\left[\left(\mathbf{y}_l^{(i)}\right)^2\right] &= \mathbb{E}\left[\left(\sum_{j}\mathbf{A}_l^{(ij)}\mathbf{y}_{l-1}^{(j)} + \mathbf{b}_l^{(i)}\right)^2\right]\\
+    &= \mathbb{E}\left[\sum_j\sum_k \mathbf{A}_l^{(ij)}\mathbf{A}_l^{(ik)}\mathbf{y}_{l-1}^{(j)}\mathbf{y}_{l-1}^{(k)} + 2\mathbf{b}_l^{(i)}\sum_j \mathbf{A}_l^{(ij)}\mathbf{y}_{l-1}^{(j)} + \left(\mathbf{b}_l^{(i)}\right)^2\right] \\
+    &= \mathbb{E}\left[\sum_j\sum_k \mathbf{A}_l^{(ij)}\mathbf{A}_l^{(ik)}\mathbf{y}_{l-1}^{(j)}\mathbf{y}_{l-1}^{(k)}\right] + \mathbb{E}\left[2\mathbf{b}_l^{(i)}\sum_j \mathbf{A}_l^{(ij)}\mathbf{y}_{l-1}^{(j)}\right] + \mathbb{E}\left[\left(\mathbf{b}_l^{(i)}\right)^2\right]\\
+    &= \sum_j\sum_k \mathbb{E}\left[\mathbf{A}_l^{(ij)}\mathbf{A}_l^{(ik)}\right]\mathbb{E}\left[\mathbf{y}_{l-1}^{(j)}\mathbf{y}_{l-1}^{(k)}\right] + \frac{1}{3n_{l-1}} \\
+    &= \sum_j\sum_k \frac{1}{n_{l-1}}\delta_{jk}\mathbb{E}\left[\mathbf{y}_{l-1}^{(j)}\mathbf{y}_{l-1}^{(k)}\right] + \frac{1}{3n_{l-1}} \\
+    &= \sum_j \frac{1}{n_{l-1}}\mathbb{E}\left[\left(\mathbf{y}_{l-1}^{(j)}\right)^2\right] + \frac{1}{3n_{l-1}}
+\end{align*}
+As the result above says, $\mathbb{E}\left[\left(\mathbf{y}_l^{(i)}\right)^2\right]$ actually doesn't depend on the index $i$. This implies that $\mathbb{E}\left[\left(\mathbf{y}_l^{(1)}\right)^2\right] = \mathbb{E}\left[\left(\mathbf{y}_l^{(2)}\right)^2\right] = \cdots = \mathbb{E}\left[\left(\mathbf{y}_l^{(n_l)}\right)^2\right]$.
+From induction, this must be held on the $l-1$ layers.(Note that we can see the base case if we put $l=1$ on the last equation above). Thus, 
+\begin{align*}
+    \mathbb{E}\left[\left(\mathbf{y}_l^{(i)}\right)^2\right] &= \mathbb{E}\left[\left(\mathbf{y}_{l-1}^{(i)}\right)^2\right] + \frac{1}{3n_{l-1}} \\
+    \sum_{l=1}^{L}\mathbb{E}\left[\left(\mathbf{y}_l^{(i)}\right)^2\right] &- \mathbb{E}\left[\left(\mathbf{y}_{l-1}^{(i)}\right)^2\right] = \sum_{l=1}^{L}\frac{1}{3n_{l-1}}\\
+    \therefore \mathbb{E}\left[\left(\mathbf{y}_L^{(i)}\right)^2\right] &= 1 + \sum_{l=1}^{L}\frac{1}{3n_{l-1}}
+\end{align*}
 
 \section*{3}
 I refer to the result of HW4-6 to solve this problem. 
@@ -127,7 +170,7 @@ class STMConvLayer(nn.Module):
             output += path(x.float())
         return output
 \end{python}
-
+The structure of my STMConvLayer is as follow. The followings are produced by print() function.
 \begin{python}
 STMConvLayer(
   (conv): ModuleList(
@@ -141,7 +184,90 @@ STMConvLayer(
   )
 )
 \end{python}
+\subsection*{5}
+\begin{figure}[!h]
+    \begin{center}
+        \includegraphics[scale = 0.25]{double_descent.png}
+    \end{center}
+\end{figure}
 
 
+\begin{python}
+import matplotlib.pyplot as plt 
+import numpy as np 
+
+
+"""
+Step 1 : Generate Toy data
+"""
+
+d = 35
+n_train, n_val, n_test = 300, 60, 30
+np.random.seed(0)
+beta = np.random.randn(d)
+beta_true = beta / np.linalg.norm(beta)
+# Generate and fix training data
+X_train = np.array([np.random.multivariate_normal(np.zeros(d), np.identity(d)) for _ in range(n_train)])
+Y_train = X_train @ beta_true + np.random.normal(loc = 0.0, scale = 0.5, size = n_train)
+# Generate and fix validation data (for tuning lambda). 
+X_val = np.array([np.random.multivariate_normal(np.zeros(d), np.identity(d)) for _ in range(n_val)])
+Y_val = X_val @ beta_true 
+# Generate and fix test data
+X_test = np.array([np.random.multivariate_normal(np.zeros(d), np.identity(d)) for _ in range(n_test)])
+Y_test = X_test @ beta_true 
+
+
+"""
+Step 2 : Solve the problem
+"""    
+
+lambda_list = [2 ** i for i in range(-6, 6)]
+num_params = np.arange(1,1501,10)
+
+errors_opt_lambda = []
+errors_fixed_lambda = []
+for p in num_params : 
+    W = np.random.randn(p, d) / np.sqrt(p)
+
+    # ReLU function
+    X_train_transformed = np.maximum(X_train @ W.T, 0)
+    X_val_transformed = np.maximum(X_val @ W.T, 0)
+    X_test_transformed = np.maximum(X_test @ W.T, 0)
+
+    # (X^TX + lambda I_p)theta = X^TY : normal equation
+    theta_fixed_lambda = np.linalg.solve(X_train_transformed.T @ X_train_transformed + 0.01 * np.eye(p), X_train_transformed.T @ Y_train)
+    errors_fixed_lambda.append(np.mean((X_test_transformed @ theta_fixed_lambda - Y_test) ** 2))
+
+    val_errors = []
+    for lambda_ in lambda_list:
+        theta_opt_lambda = np.linalg.solve(X_train_transformed.T @ X_train_transformed + lambda_ * np.eye(p), X_train_transformed.T @ Y_train)
+        val_errors.append(np.mean((X_val_transformed @ theta_opt_lambda - Y_val) ** 2))
+    optimal_lambda = lambda_list[np.argmin(val_errors)]
+    theta_opt_lambda = np.linalg.solve(X_train_transformed.T @ X_train_transformed + optimal_lambda * np.eye(p), X_train_transformed.T @ Y_train)
+    errors_opt_lambda.append(np.mean((X_test_transformed @ theta_opt_lambda - Y_test) ** 2))
+"""
+Step 3 : Plot the results
+"""    
+
+plt.figure(figsize = (24, 8))
+plt.rc('text', usetex = True)
+plt.rc('font', family = 'serif')
+plt.rc('font', size = 24)
+
+
+plt.scatter(num_params, errors_fixed_lambda, color = 'black',
+            label = r"Test error with fixed $\lambda = 0.01$",
+            ) 
+plt.legend()
+
+plt.plot(num_params, errors_opt_lambda, 'k', label = r"Test error with tuned $\lambda$")
+plt.legend()
+plt.xlabel(r'$\#$ parameters')
+plt.ylabel('Test error')
+plt.title(r'Test error vs. $\#$ params')
+
+plt.savefig('double_descent.png')
+plt.show()
+\end{python}
 
 \end{document}
