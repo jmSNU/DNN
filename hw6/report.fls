@@ -1109,13 +1109,13 @@ INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/listing
 INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/tfm/public/cm/cmtt8.tfm
-INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/tfm/public/cm/cmsltt10.tfm
 INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT ./double_descent.png
 INPUT ./double_descent.png
 INPUT double_descent.png
 INPUT ./double_descent.png
 INPUT ./double_descent.png
+INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/tfm/public/cm/cmsltt10.tfm
 INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/base/ts1cmtt.fd
 INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/base/ts1cmtt.fd
 INPUT /opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/latex/base/ts1cmtt.fd

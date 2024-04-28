@@ -69,44 +69,43 @@ In this problem, I denote the bold symbol of each variable as the random variabl
 \end{equation*}
 From the PyTorch offficial document, it is important to note the following relations.
 \begin{align*}
-    \mathbf{A_l^{(ij)}} &\sim \mathcal{U}\left(-\sqrt{\frac{3}{n_{l-1}}},\sqrt{\frac{3}{n_{l-1}}}\right)\\
+    \mathbf{A_l^{(ij)}} &\sim \mathcal{U}\left(-\sqrt{\frac{1}{n_{l-1}}},\sqrt{\frac{1}{n_{l-1}}}\right)\\
     \mathbf{b_l^{(i)}} &\sim \mathcal{U}\left(-\sqrt{\frac{1}{n_{l-1}}},\sqrt{\frac{1}{n_{l-1}}}\right)
 \end{align*}
 The relations above imply the following. 
 \begin{align*}
     \mathbb{E}[\mathbf{A_l^{(ij)}}] &= 0, \quad \mathbb{E}[\mathbf{b_l^{(i)}}] = 0\\ 
-    \mathbb{E}\left[\left(\mathbf{A_l^{(ij)}}\right)^2\right] &= \frac{1}{n_{l-1}}, \quad \mathbb{E}\left[\left(\mathbf{b_l^{(i)}}\right)^2\right] = \frac{1}{3n_{l-1}} 
+    \mathbb{E}\left[\left(\mathbf{A_l^{(ij)}}\right)^2\right] &= \frac{1}{3n_{l-1}}, \quad \mathbb{E}\left[\left(\mathbf{b_l^{(i)}}\right)^2\right] = \frac{1}{3n_{l-1}} 
 \end{align*}
 Then, to derive the mean of $\mathbf{y}_L$, consider the mathematical induction of $\mathbb{E}[\mathbf{y}_l^{(i)}]$.
 For the base case, the mean value of $\mathbf{y}^{(i)}_1$ is zero. 
 \begin{align*}
-    \mathbb{E}[\mathbf{y_1^{(i)}}] &= \sum_{j=1}^{n_0} \mathbb{E}\left[\mathbf{A_l^{(ij)}x^{(j)}}\right] + \mathbb{E}\left[\mathbf{b_1^{(i)}}\right] \\
-    &= \sum_{j=1}^{n_0} \mathbb{E}\left[\mathbf{A_l^{(ij)}}\right]\mathbb{E}\left[\mathbf{x^{(j)}}\right] \\
+    \mathbb{E}[\mathbf{y_1^{(i)}}] &= \mathbb{E}[\mathbb{E}[\mathbf{y}_1^{(i)}|x]] \\ &= \mathbb{E}\left[\sum_{j=1}^{n_0}\mathbb{E}\left[\mathbf{A}_l^{(ij)}\mathbf{x}^{(j)}|x\right] + \mathbb{E}\left[\mathbf{b_1^{(i)}}|x\right]\right] \\
+    &= \mathbb{E}\left[\sum_{j=1}^{n_0} \mathbb{E}\left[\mathbf{A}_l^{(ij)}\right]x^{(j)}\right] \\
     &= 0
 \end{align*}
 Then, for the inductive step, the mean value of $\mathbf{y}^{(i)}_l$ is zero. To proof it, consider the following induction hypothesis: $\mathbb{E}[\mathbf{y}^{(i)}_{l-1}] = 0$.
 \begin{align*}
-    \mathbb{E}[\mathbf{y_l^{(i)}}] &= \sum_{j=1}^{n_{l-1}} \mathbb{E}\left[\mathbf{A_l^{(ij)}y_{l-1}^{(j)}}\right] + \mathbb{E}\left[\mathbf{b_l^{(i)}}\right] \\
-    &= \sum_{j=1}^{n_{l-1}} \mathbb{E}\left[\mathbf{A_l^{(ij)}}\right]\mathbb{E}\left[\mathbf{y_{l-1}^{(j)}}\right] \\
+    \mathbb{E}[\mathbf{y}_l^{(i)}] &= \mathbb{E}[\mathbb{E}[\mathbf{y}_l^{(i)}|y_{l-1}]]\\&= \mathbb{E}\left[\sum_{j=1}^{n_{l-1}} \mathbb{E}\left[\mathbf{A}_l^{(ij)}\mathbf{y}_{l-1}^{(j)}|y_{l-1}\right] + \mathbb{E}\left[\mathbf{b}_l^{(i)}|y_{l-1}\right]\right] \\
+    &= \mathbb{E}\left[\sum_{j=1}^{n_{l-1}} \mathbb{E}\left[\mathbf{A}_l^{(ij)}\right]y_{l-1}^{(j)}\right] \\
     &= 0
 \end{align*}
 Next, I'll derive the variance of $\mathbf{y}^{(i)}_l$.
 \begin{align*}
-    \mathbb{E}\left[\left(\mathbf{y}_l^{(i)}\right)^2\right] &= \mathbb{E}\left[\left(\sum_{j}\mathbf{A}_l^{(ij)}\mathbf{y}_{l-1}^{(j)} + \mathbf{b}_l^{(i)}\right)^2\right]\\
-    &= \mathbb{E}\left[\sum_j\sum_k \mathbf{A}_l^{(ij)}\mathbf{A}_l^{(ik)}\mathbf{y}_{l-1}^{(j)}\mathbf{y}_{l-1}^{(k)} + 2\mathbf{b}_l^{(i)}\sum_j \mathbf{A}_l^{(ij)}\mathbf{y}_{l-1}^{(j)} + \left(\mathbf{b}_l^{(i)}\right)^2\right] \\
-    &= \mathbb{E}\left[\sum_j\sum_k \mathbf{A}_l^{(ij)}\mathbf{A}_l^{(ik)}\mathbf{y}_{l-1}^{(j)}\mathbf{y}_{l-1}^{(k)}\right] + \mathbb{E}\left[2\mathbf{b}_l^{(i)}\sum_j \mathbf{A}_l^{(ij)}\mathbf{y}_{l-1}^{(j)}\right] + \mathbb{E}\left[\left(\mathbf{b}_l^{(i)}\right)^2\right]\\
-    &= \sum_j\sum_k \mathbb{E}\left[\mathbf{A}_l^{(ij)}\mathbf{A}_l^{(ik)}\right]\mathbb{E}\left[\mathbf{y}_{l-1}^{(j)}\mathbf{y}_{l-1}^{(k)}\right] + \frac{1}{3n_{l-1}} \\
-    &= \sum_j\sum_k \frac{1}{n_{l-1}}\delta_{jk}\mathbb{E}\left[\mathbf{y}_{l-1}^{(j)}\mathbf{y}_{l-1}^{(k)}\right] + \frac{1}{3n_{l-1}} \\
-    &= \sum_j \frac{1}{n_{l-1}}\mathbb{E}\left[\left(\mathbf{y}_{l-1}^{(j)}\right)^2\right] + \frac{1}{3n_{l-1}}
+    \mathbb{E}\left[\left(\mathbf{y}_l^{(i)}\right)^2\right] &= \mathbb{E}\left[\mathbb{E}\left[\left(\mathbf{y}_l^{(i)}\right)^2|y_{l-1}\right]\right] \\ &= \mathbb{E}\left[\mathbb{E}\left[\left(\sum_{j}\mathbf{A}_l^{(ij)}\mathbf{y}_{l-1}^{(j)} + \mathbf{b}_l^{(i)}\right)^2\bigg|y_{l-1}\right]\right]\\
+    &= \mathbb{E}\left[\mathbb{E}\left[\sum_j\sum_k \mathbf{A}_l^{(ij)}\mathbf{A}_l^{(ik)}\mathbf{y}_{l-1}^{(j)}\mathbf{y}_{l-1}^{(k)} + 2\mathbf{b}_l^{(i)}\sum_j \mathbf{A}_l^{(ij)}\mathbf{y}_{l-1}^{(j)} + \left(\mathbf{b}_l^{(i)}\right)^2\bigg|y_{l-1}\right]\right] \\
+    &= \mathbb{E}\left[\mathbb{E}\left[\sum_j\sum_k \mathbf{A}_l^{(ij)}\mathbf{A}_l^{(ik)}\mathbf{y}_{l-1}^{(j)}\mathbf{y}_{l-1}^{(k)}\bigg|y_{l-1}\right] + \mathbb{E}\left[2\mathbf{b}_l^{(i)}\sum_j \mathbf{A}_l^{(ij)}\mathbf{y}_{l-1}^{(j)}\bigg|y_{l-1}\right] + \mathbb{E}\left[\left(\mathbf{b}_l^{(i)}\right)^2\bigg|y_{l-1}\right]\right]\\
+    &= \mathbb{E}\left[\sum_j\sum_k \mathbb{E}\left[\mathbf{A}_l^{(ij)}\mathbf{A}_l^{(ik)}\bigg|y_{l-1}\right]y_{l-1}^{(j)}y_{l-1}^{(k)}\right] + \frac{1}{3n_{l-1}}\\
+    &= \mathbb{E}\left[\sum_j\sum_k \frac{1}{3n_{l-1}}\delta_{jk}y_{l-1}^{(j)}y_{l-1}^{(k)}\right] + \frac{1}{3n_{l-1}} \\
+    &= \sum_j \frac{1}{3n_{l-1}}\mathbb{E}\left[\left(\mathbf{y}_{l-1}^{(j)}\right)^2\right] + \frac{1}{3n_{l-1}}
 \end{align*}
 As the result above says, $\mathbb{E}\left[\left(\mathbf{y}_l^{(i)}\right)^2\right]$ actually doesn't depend on the index $i$. This implies that $\mathbb{E}\left[\left(\mathbf{y}_l^{(1)}\right)^2\right] = \mathbb{E}\left[\left(\mathbf{y}_l^{(2)}\right)^2\right] = \cdots = \mathbb{E}\left[\left(\mathbf{y}_l^{(n_l)}\right)^2\right]$.
 From induction, this must be held on the $l-1$ layers.(Note that we can see the base case if we put $l=1$ on the last equation above). Thus, 
 \begin{align*}
-    \mathbb{E}\left[\left(\mathbf{y}_l^{(i)}\right)^2\right] &= \mathbb{E}\left[\left(\mathbf{y}_{l-1}^{(i)}\right)^2\right] + \frac{1}{3n_{l-1}} \\
-    \sum_{l=1}^{L}\mathbb{E}\left[\left(\mathbf{y}_l^{(i)}\right)^2\right] &- \mathbb{E}\left[\left(\mathbf{y}_{l-1}^{(i)}\right)^2\right] = \sum_{l=1}^{L}\frac{1}{3n_{l-1}}\\
-    \therefore \mathbb{E}\left[\left(\mathbf{y}_L^{(i)}\right)^2\right] &= 1 + \sum_{l=1}^{L}\frac{1}{3n_{l-1}}
+    \mathbb{E}\left[\left(\mathbf{y}_l^{(i)}\right)^2\right] &= \frac{1}{3}\mathbb{E}\left[\left(\mathbf{y}_{l-1}^{(i)}\right)^2\right] + \frac{1}{3n_{l-1}} \\
+    \mathbb{E}\left[\left(\mathbf{y}_l^{(i)}\right)^2\right] &= \frac{1}{3}\left(\frac{1}{3}\left(\mathbb{E}\left[\left(\mathbf{y}_{l-2}^{(i)}\right)^2\right] + \frac{1}{n_{l-2}}\right) + \frac{1}{n_{l-1}}\right) \\ &\vdots \\ &= \frac{1}{3^l}\mathbb{E}\left[\left(\mathbf{y}_0^{(i)}\right)^2\right] + \sum_{k=0}^{l-1}\frac{1}{3^{l-k}n_k}\\
+    \therefore \mathbb{E}\left[\left(\mathbf{y}_L^{(i)}\right)^2\right] &= \frac{1}{3^L} + \sum_{k=0}^{L-1}\frac{1}{3^{L-k}n_k}
 \end{align*}
-
 \section*{3}
 I refer to the result of HW4-6 to solve this problem. 
 \subsection*{i}
@@ -153,34 +152,38 @@ The whole calculation process is as follow.
 class STMConvLayer(nn.Module):
     def __init__(self):
         super(STMConvLayer, self).__init__()
-        self.conv = nn.ModuleList()
-        for _ in range(32):
-            self.conv.append(
-                nn.Sequential(
-                    nn.Conv2d(256, 4, 1, dtype=torch.float),  # Specify dtype=torch.float
-                    nn.ReLU(),
-                    nn.Conv2d(4, 4, 3, padding=1, dtype=torch.float),  # Specify dtype=torch.float
-                    nn.ReLU(),
-                    nn.Conv2d(4, 256, 1, dtype=torch.float)  # Specify dtype=torch.float
-                )
-            )
-    def forward(self,x): # x : bathced data
-        output = torch.zeros(x.shape, dtype=torch.float)
-        for path in self.conv:
-            output += path(x.float())
-        return output
+        self.layer1 = nn.ModuleList([
+            nn.Conv2d(256,4,kernel_size =1, stride = 1)
+            for i in range(32)
+        ])
+        self.layer2 = nn.ModuleList([
+            nn.Conv2d(4,4,kernel_size = 3,stride = 1, padding = 1)
+            for i in range(32)
+        ])
+        self.layer3 = nn.ModuleList([
+            nn.Conv2d(4,256, kernel_size = 1, stride = 1)
+            for i in range(32)
+        ])
+    def forward(self,x):
+        out = []
+        for i in range(32):
+            x = torch.nn.functional.relu(self.layer1[i](x))
+            x = torch.nn.functional.relu(self.layer2[i](x))
+            x = torch.nn.functional.relu(self.layer3[i](x))
+            out = out.append(x)
+        return sum(out)
 \end{python}
 The structure of my STMConvLayer is as follow. The followings are produced by print() function.
 \begin{python}
 STMConvLayer(
-  (conv): ModuleList(
-    (0-31): 32 x Sequential(
-      (0): Conv2d(256, 4, kernel_size=(1, 1), stride=(1, 1))
-      (1): ReLU()
-      (2): Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-      (3): ReLU()
-      (4): Conv2d(4, 256, kernel_size=(1, 1), stride=(1, 1))
-    )
+  (layer1): ModuleList(
+    (0-31): 32 x Conv2d(256, 4, kernel_size=(1, 1), stride=(1, 1))
+  )
+  (layer2): ModuleList(
+    (0-31): 32 x Conv2d(4, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  )
+  (layer3): ModuleList(
+    (0-31): 32 x Conv2d(4, 256, kernel_size=(1, 1), stride=(1, 1))
   )
 )
 \end{python}
