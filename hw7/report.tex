@@ -93,7 +93,9 @@ addition are same to $C_{in}k^2$. For each operation, we have $C_{out}H_{out}W_{
 Thus, by multiplying them, one can derive the number of addition and multiplication for each forward pass. 
 Next, consider the linear layer. It is a special case of convolution layer where $k = 1, H_{out} = 1, W_{out} = 1$. Thus, 
 the number of addition and multiplication in linear layer is $(number\ of\ input\ feature)\times(number\ of\ output\ feature)$.
-Noting the formulae above, the total number of addition and multiplication in linear layer is 58,621,952, while in convolution layer, it is 655,566,528.
+Noting the formulae above, the total number of addition and multiplication in linear layer is 
+$2\times(3\times 64\times 11^2 \times 55^2 + 64\times 192 \times 5^2 \times 27^2 \times 192 \times 384 \times 3^2 \times 13^2  + 384 \times 256 \times 3^2 \times 13^2 + 256 \times 256 \times 3^2 \times 13^2) = 117,243,904$
+, while in convolution layer, it is $2\times\left(256 \times 6^2 \times 4096 + 4096 \times 4096 + 4096 \times 1000\right) = 1,311,133,056.$
 
 \section*{4}
 \subsection*{a}
