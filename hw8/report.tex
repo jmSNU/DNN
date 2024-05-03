@@ -1,0 +1,224 @@
+
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{kotex}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{titling}
+\setlength{\droptitle}{-2cm}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{siunitx} 
+\usepackage{enumerate} 
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{tikz,pgfplots}
+\usepackage{wasysym}
+\usepackage{geometry}
+\usepackage{authblk}
+\usepackage{kotex}
+\usepackage{bibunits}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{pythonhighlight}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\geometry{
+    a4paper,
+    total={170mm,257mm},
+    left=20mm,
+    top=20mm,
+}
+
+\title{\textbf{Mathematical Foundation of DNN : HW 8}}
+\author{Jeong Min Lee}
+
+\begin{document}
+\maketitle
+
+\section*{1}
+For $1\le i \le m/2, 1\le j \le n/2$
+\begin{equation*}
+    [\mathcal{T}(X)]_{ij} = \frac{1}{4}\left(X_{2i-1,2j-1} + X_{2i-1,2j} + X_{2i,2j-1} + X_{2i,2j}\right) \equiv \frac{1}{4}\text{sum}\left(X_{2i-1:2i,2j-1:2j}\right)
+\end{equation*}
+From the equation above, one can observe that $\mathcal{T}$ is linear operator.
+\begin{align*}
+    [\mathcal{T}(X+Y)]_{ij} &= \frac{1}{4}\text{sum}\left(\left(X+Y\right)_{2i-1:2i, 2j-1:2j}\right) \\
+    &= \frac{1}{4}\text{sum}\left(X_{2i-1:2i, 2j-1:2j} + Y_{2i-1:2i, 2j-1:2j}\right)\\
+    &= \frac{1}{4}\left(\text{sum}(X_{{2i-1:2i, 2j-1:2j}}) + \text{sum}(Y_{{2i-1:2i, 2j-1:2j}})\right) \\
+    &= \left[\mathcal{T}(X)\right]_{ij} + \left[\mathcal{T}(Y)\right]_{ij}
+\end{align*}
+\begin{align*}
+    \mathcal{T}(aX) &= \frac{1}{4}\text{sum}\left((aX)_{2i-1:2i, 2j-1:2j}\right) \\
+    &= a\times \frac{1}{4}\text{sum}\left((X)_{2i-1:2i, 2j-1:2j}\right) \\
+    &= a\mathcal{T}(X)
+\end{align*}
+
+
+\begin{align*}
+    &\sum_{i=1}^{m/2}\sum_{j=1}^{n/2}Y_{ij}(\mathcal{T(X)})_{ij}\\
+    & = \sum_{i=1}^{m/2}\sum_{j=1}^{n/2}Y_{ij}\frac{1}{4}\text{sum}\left(X_{2i-1:2i, 2j-1:2j}\right)\\ 
+    &= \frac{1}{4}\left[\sum_{i=1}^{m/2}\sum_{j=1}^{n/2} Y_{ij}X_{2i-1,2j-1} + \sum_{i=1}^{m/2}\sum_{j=1}^{n/2} Y_{ij}X_{2i-1,2j} + \sum_{i=1}^{m/2}\sum_{j=1}^{n/2} Y_{ij}X_{2i,2j-1} + \sum_{i=1}^{m/2}\sum_{j=1}^{n/2} Y_{ij}X_{2i,2j}\right] \\
+    &= \frac{1}{4}\left[\sum_{\substack{i=1,3,\cdots,m-1 \\ j = 1,3, \cdots, n-1}} Y_{\frac{i+1}{2},\frac{j+1}{2}}X_{ij} + \sum_{\substack{i=1,3,\cdots,m-1 \\ j = 2,4, \cdots, n}} Y_{\frac{i+1}{2},\frac{j}{2}}X_{ij} + \sum_{\substack{i=2,4,\cdots,m \\ j = 1,3, \cdots, n-1}} Y_{\frac{i}{2},\frac{j+1}{2}}X_{ij} + \sum_{\substack{i=2,4,\cdots,m \\ j = 2,4, \cdots, n}} Y_{\frac{i}{2},\frac{j}{2}}X_{i,j}\right] \\
+    &=\frac{1}{4}\sum_{i=1}^m\sum_{j=1}^n Y_{\lfloor\frac{i+1}{2}\rfloor, \lfloor \frac{j+1}{2}\rfloor} X_{ij}
+\end{align*}
+
+Consider the upsampling operator $\mathcal{U} : \mathbb{R}^{m/2\times n/2} \rightarrow \mathbb{R}^{m\times n}$. For $1\le i\le m, 1\le j\le n$,
+\begin{equation*}
+    \left[\mathcal{U}(Y)\right]_{ij} = \begin{cases}
+        Y_{\frac{i+1}{2},\frac{j+1}{2}} \text{ if } i = odd, j = odd \\
+        Y_{\frac{i+1}{2},\frac{j}{2}} \text{ if } i = odd, j = even \\
+        Y_{\frac{i}{2},\frac{j+1}{2}} \text{ if } i = even, j = odd \\
+        Y_{\frac{i}{2},\frac{j}{2}} \text{ if } i = even, j = even
+    \end{cases}
+\end{equation*}
+The mapping above can be written in short as follows: $[\mathcal{U}(Y)]_{ij} = Y_{\lfloor\frac{i+1}{2}\rfloor,\lfloor\frac{j+1}{2}\rfloor}$.
+Thus, 
+\begin{equation*}
+    \sum_{i=1}^{m/2}\sum_{j=1}^{n/2}Y_{ij}(\mathcal{T(X)})_{ij} = \sum_{i=1}^{m}\sum_{j=1}^{n}\left(\mathcal{T}^T(Y)\right)_{ij}X_{ij} = \sum_{i=1}^{m}\sum_{j=1}^{n}\frac{1}{4}\left(\mathcal{U}(Y)\right)_{ij}X_{ij}
+\end{equation*}
+\section*{2}
+Suppose input $X \in \mathbb{R}^{C_{in}\times H_{in} \times W_{in}}$ and the output $Y \in \mathbb{R}^{C_{out}\times H_{out} \times W_{out}}$.
+Noting the \textbf{ConvTranspose2d()} operation, $H_{out} = (H_{in}-1)\times \text{striding} + k$ without any consideration of padding. To make 
+\textbf{ConvTranspose2d()} operation and \textbf{Upsample()} operation are equivalent, the filter size $k$ and striding should satisfy the following equation.
+\begin{equation*}
+    H_{out} = (H_{in}-1)\times \text{striding} + k = rH_{in}
+\end{equation*}
+Selecting $k = r, \text{ striding} = r$ is the simplest way to hold the condition above. Also, to do nearest upsampling, the weight of the filter should be initialized to be 1 with dimension $r\times r$.
+Thus,
+\begin{python}
+layer = nn.ConvTranspose2d(C_in,C_out, kernel_size = r, stride = r)
+layer.weight.data = torch.ones(r,r)
+\end{python}
+\section*{3}
+\subsection*{a}
+\begin{align*}
+    D_f(X||Y) &= \int f\left(\frac{P_X(x)}{P_Y(x)}\right)P_Y(x) dx \\ 
+    &= \mathbb{E}\left[f\left(\frac{P_X}{P_Y}\right)\right] \\
+    & \ge f\left(\mathbb{E}\left[\frac{P_X}{P_Y}\right]\right) \\ 
+    &= f\left(\int\frac{P_X(x)}{P_Y(x)}P_Y(x) dx \right) \\
+    &= f(1) = 0 
+\end{align*}
+\subsection*{b}
+To show that $y = -\log x$ and $y = x\log x$ are convex, I used the following theorem : The differentiable function $f$ is strictly convex \textit{if and only if} its derivate $f^\prime$ is strictly increasing
+(Refer to the appendix to see the proof of the following theorem). Noting that logarithm function is defined on $\left\{x\in \mathbb{R}|x>0\right\}$, 
+
+\begin{align*}
+    &{d^2\over dx^2}(-\log x) = {d\over dx} \left(-\frac{1}{x}\right) =  \frac{1}{x^2} \ge 0\\
+    &{d^2\over dx^2}(x\log x) = {d\over dx} \log x + 1 = \frac{1}{x} \ge 0
+\end{align*}
+Also, it is obvious that $\log 1 = 0, 1\times \log 1 = 0$. Thus, the $f$-divergence of both $-\log x, x\log x$ are well defined. 
+Then, one can find that $f$-divergence of both functions are KL-divergence.
+\begin{align*}
+    &D_f(X||Y) = \int -\log\left(\frac{P_X(x)}{P_Y(x)}\right)P_Y(x) dx  = \int P_Y(x)\log\left(\frac{P_Y(x)}{P_X(x)}\right)dx = D_{KL}\left(P_Y || P_X\right) \\
+    &D_f(X||Y) = \int P_Y(x)\frac{P_X(x)}{P_Y(x)}\log\left(\frac{P_X(x)}{P_Y(x)}\right)dx = \int P_X(x)\log\left(\frac{P_X(x)}{P_Y(x)}\right) dx = D_{KL}(P_X||P_Y)
+\end{align*}
+\section*{4}
+\begin{equation*}
+    \mathbb{P}(G(U)\le t) = \mathbb{P}\left(\inf \left\{x\in \mathbb{R}|U\le F(x)\right\}\le t\right)
+\end{equation*}
+Define two event $A,B$ as follows : 
+\begin{align*}
+    &A = \left\{\inf \left\{x\in \mathbb{R}|U\le F(x)\right\}\le t\right\} \\
+    &B = \left\{U\le F(t)\right\}
+\end{align*}
+Since the CDF of $U$, $F_U(u)$, is $F_U(u) = u$ for $u \in [0,1]$, $\mathbb{P}(B) = \mathbb{P}(U\le F(t)) = F_U(F(t)) = F(t)$.
+If $A = B$, then $\mathbb{P}(A) = \mathbb{P}(B) = F(x)$ and the proof is done. To show that $A = B$, consider the both cases : $B \subset A, A \subset B$.
+\subsection*{(i) : $A\subset B$}
+Suppose $A$ is true. Then, $\inf\left\{x\in \mathbb{R}|U\le F(x)\right\} \le t$. This implies $\exists x_0 \in \mathbb{R}, F(x_0)\ge U$ for $x_0 \le t$.
+Since the CDF $F$ is nondecreasing, $F(t) \ge F(x_0)$. Thus, $U \le F(x_0) \le F(t)$, which concludes that $B$ is true. 
+\subsection*{(ii) : $B\subset A$}
+Suppose $B$ is true. Then, $U\le F(t)$. Consider a set $S = \left\{x | F(x) \ge U\right\}$. Then, $t\in S$. This implies $\inf S = \inf \left\{x | F(x)\ge U\right\} \le t$. Thus, the event $A$ is true. 
+As a result, $A = B$ and this ends up with $\mathbb{P}(G(U) \le t) = F(t)$
+\section*{5}
+From $X = AY + b$, $\varphi(X) = Y = A^{-1}\left(X - b\right)$. According to the prperty of $p_X(x)$ produced by the condition of the problem,
+\begin{align*}
+    P_X(x) &= P_Y(\varphi(x))\left|\det {\partial \varphi\over \partial x}(x)\right| \\
+    &= P_Y(\varphi(x))\left|\det A^{-1}\right|\\
+    &= \frac{1}{\det A}\frac{1}{(2\pi)^{n/2}}e^{-\frac{1}{2}\lVert A^{-1}(x-b)\rVert^2} \\
+    &= \frac{1}{\sqrt{(2\pi)^n \det \Sigma}} e^{-\frac{1}{2}(x-b)^T(A^{-1})^TA^{-1}(x-b)} (\because \det\Sigma  = \det A \det A^T = (\det A)^2) \\
+    &= \frac{1}{\sqrt{(2\pi)^n \det \Sigma}} e^{-\frac{1}{2}(x-b)^T \Sigma^{-1}(x-b)} (\because \Sigma^{-1} = (AA^T)^{-1} = (A^{-1})^TA^{-1})
+\end{align*}
+\section*{6}
+\begin{algorithm}
+    \caption{Inverse Permutation Pseudo Code}
+    \begin{algorithmic}[1]
+    \State Let $n$ be the length of the list $\sigma$
+    \State Initialize an empty list called \textit{result}
+    \For{$i = 1$ \textbf{to} $n$}
+        \For{$j = 1$ \textbf{to} $n$}
+            \If{$\sigma[i]$ equals $j+1$}
+                \State Append $j+1$ to the \textit{result} list
+            \EndIf
+        \EndFor
+    \EndFor
+    \end{algorithmic}
+\end{algorithm}
+
+
+\section*{7}
+\subsection*{a}
+\begin{align*}
+    \left[P_{\sigma}x\right]_i = e^T_{\sigma(i)}x = x_{\sigma(i)}
+\end{align*}
+\subsection*{b}
+\begin{align*}
+    \left(P_\sigma P_\sigma^T\right)_{ij} &= \sum_k P_\sigma^{(ik)}P_\sigma^{(jk)} \\
+    &= \sum_k e_{\sigma(i)}^{(k)} e_{\sigma(j)}^{(k)}\\
+    &= \sum_k \delta_{\sigma(i),k} \delta_{\sigma(j),k}\\
+    &= \delta_{\sigma(i),\sigma(j)}\\
+    &= \delta_{ij} \ (\because \sigma \text{ is bijection})
+\end{align*}
+
+\begin{align*}
+    \left(P_{\sigma^{-1}} P_\sigma\right)_{ij} &= \sum_k P_{\sigma^{-1}}^{(ik)}P_\sigma^{(kj)} \\
+    &= \sum_k e_{\sigma^{-1}(i)}^{(k)}e_{\sigma(k)}^{(j)}\\
+    &= \sum_k \delta_{\sigma^{-1}(i),k}\delta_{\sigma(k),j}\\
+    &= \delta_{ij} \ (\because \delta_{\sigma^{-1}(i),k}\delta_{\sigma(k),j} = 1 \text{ if } k = \sigma^{-1}(i), \sigma(k) = j)
+\end{align*}
+\subsection*{c}
+\begin{align*}
+    &\det\left(P_\sigma P_\sigma^T\right) = \left(\det P_\sigma\right)^2 = 1\\
+    & \therefore |\det P_\sigma| = 1
+\end{align*}
+
+\appendix
+\section{Proof of Theorem in problem 3-b}
+\textbf{proof}\\
+$\implies :     a,b \in \mathbb{R} (a<b). \text{ Let} x_1, x_2, x_3 \in \mathbb{R} \text{ be chosen s.t. } a<x_1<x_2<x_3<b.$
+
+From Chordal Slope Lemma, which is famous lemma applicable to convex function, the following inequalities are held.
+
+\begin{equation}
+    \frac{f(x_1) - f(a)}{x_1 - a} < \frac{f(x_2) - f(x_1)}{x_2 - x_1}<\frac{f(x_3) - f(x_2)}{x_3 - x_2} < \frac{f(b) - f(x_3)}{b - x_3}
+    \label{eqn1}
+\end{equation} 
+\begin{equation}
+    \frac{f(x_2) - f(a)}{x_2 - a} < \frac{f(b) - f(x_2)}{b - x_2}
+\end{equation} 
+
+Taking limit $x_1 \rightarrow a, x_3 \rightarrow b$ on equation \ref{eqn1}, 
+
+\begin{equation}
+    f^\prime(a) \le \frac{f(x_2) - f(a)}{x_2 - a} < \frac{f(b) - f(x_2)}{b - x_2} \le f^\prime(b)
+\end{equation}\\
+and, therefore, $f^\prime(a)<f^\prime(b)$ for arbitrary $a,b\in\mathbb{R}$.\\
+
+$\Longleftarrow$ : Let $x_1, x_2, x_3 \in \mathbb{R}$ s.t. $x_1<x_2<x_3$. From Mean Value Theorem,
+\begin{equation}
+    \exists a \text{ s.t } \frac{f(x_2) - f(x_1)}{x_2 - x_1} = f^\prime(a) \\
+\end{equation}
+\begin{equation}
+    \exists b \text{ s.t } \frac{f(x_3) - f(x_2)}{x_3 - x_2} = f^\prime(b)
+\end{equation}
+Note that $x_1<a<x_2<b<x_3$. Since $f^\prime$ is strictly increasing, $f^\prime(a) < f^\prime(b)$, which implies 
+\begin{equation}
+    \frac{f(x_2) - f(x_1)}{x_2 - x_1} < \frac{f(x_3) - f(x_2)}{x_3 - x_2} 
+    \label{eqn6}
+\end{equation}
+The result of equation \ref{eqn6} is equivalent that $f$ is strictly convex according to Chordal Slope Lemma.$\blacksquare$ 
+
+
+\end{document}
