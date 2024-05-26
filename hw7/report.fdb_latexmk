@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1714191192 "/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw7/report.tex" "report.pdf" "report" 1714191193 0
-  "/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw7/report.tex" 1714191192 9046 643dca8b3711c3a50d6acaab68badf0f ""
+["pdflatex"] 1714373509 "/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw7/report.tex" "report.pdf" "report" 1714373510 0
+  "/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw7/report.tex" 1714373509 9351 0aae13cfc5a24d8102558a64201b76e3 ""
   "/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/map/fontname/texfonts.map" 1678549815 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map" 1678549815 4609045 74543da1ab9350ba886fce0af49a2cfd ""
   "/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1678549815 1004 54797486969f23fa377b128694d548df ""
@@ -225,9 +225,9 @@
   "/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/plain/kotex-plain/kotexutf-core.tex" 1678549815 22796 cdbc6dbba903a5287c558339ae446988 ""
   "/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/web2c/texmf.cnf" 1678549815 40748 4081c8bc921e56c865f975bd762e388c ""
   "/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-var/web2c/pdftex/pdflatex.fmt" 1678549815 7884066 53a9aad02a5b14fbfbcc78ec177fdd6d ""
-  "report.aux" 1714191193 554 dd2b48f1aba1e3b725040b4d3abf7fbe "pdflatex"
-  "report.out" 1714191193 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "report.tex" 1714191192 9046 643dca8b3711c3a50d6acaab68badf0f ""
+  "report.aux" 1714373510 554 dd2b48f1aba1e3b725040b4d3abf7fbe "pdflatex"
+  "report.out" 1714373510 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "report.tex" 1714373509 9351 0aae13cfc5a24d8102558a64201b76e3 ""
   (generated)
   "report.aux"
   "report.log"
