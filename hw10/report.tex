@@ -278,51 +278,75 @@ By inserting followin derivatives into the equation above, the gradient of objec
 \end{align*}
 \begin{python}
 mu = 0
-sigma = 1
-B = 16
-lr = 1e-2
-iteration = 50
+tau = 0
+B = 32
+lr = 1e-1
+iteration = 500
+
+logger = []
+
+def loss(X, mu, tau):
+    return torch.sum(X*torch.sin(X))/X.shape[0] + 0.5*(mu-1)**2 + np.exp(tau) - tau
 
 for _ in range(iteration):
-    X = sigma*torch.normal(0,1,size=(B,1)) + mu
-    g1 = torch.sum(X*torch.sin(X)*(-(X-mu)/sigma**2)) + mu -1
-    g2 = torch.sum(X*torch.sin(X)*(-1/sigma + (X-mu)**2/sigma**3)) + 1 - 1/sigma
+    X = np.exp(tau)*torch.normal(0,1,size=(B,1)) + mu
+    g1 = torch.sum(X*torch.sin(X)*((X-mu)/np.exp(2*tau)))/B + mu -1
+    g2 = torch.sum(X*torch.sin(X)*(-1 + (X-mu)**2*np.exp(-2*tau)))/B + np.exp(tau)-1
     mu -= lr*g1/B
-    sigma -=lr*g2/B
-print(mu)
-print(sigma)
+    tau -=lr*g2/B
+    logger.append(loss(X, mu, tau))
+
+plt.plot(range(iteration),logger)
+plt.xlabel("Iteration")
+plt.ylabel("Loss")
+
+print(mu.item())
+print(np.exp(tau.item()))
+
 \end{python}
 \begin{python}
-tensor(0.0037)
-tensor(0.6080)
+0.4434947967529297
+0.6487261602209319
 \end{python}
 \subsection*{b}
 According to the definition of Gaussian random variable, if $Y\sim \mathcal{N}(0,1)$, the derived random variable $X = \sigma Y + \mu$ is the Gaussian random variable with mean $\mu$, variance $\sigma^2$. Thus, from the reparametrization trick, 
 \begin{align*}
     &\nabla_{\mu, \sigma^2} \mathbb{E}_{X\sim \mathcal{N}(\mu, \sigma^2)}\left[X \sin X\right] + \frac{1}{2}(\mu - 1)^2 + \sigma - \log \sigma \\
-    &= \nabla_{\mu, \sigma^2} \mathbb{E}_{X\sim \mathcal{N}(\mu, \sigma^2)}\left[X \sin X + \frac{1}{2}(\mu - 1)^2 + \sigma - \log \sigma\right] \\  
-    &= \mathbb{E}_{Y\sim \mathcal{N}(0,1)}\left[\left(\sin X + X\cos X, (\sin X + X\cos X) Y\right)^T\right]
+    &= \nabla_{\mu, \sigma^2} \mathbb{E}_{X\sim \mathcal{N}(\mu, \sigma^2)}\left[X \sin X \right] + \nabla_{\mu, \sigma^2} \frac{1}{2}(\mu - 1)^2 + \sigma - \log \sigma\\  
+    &= \mathbb{E}_{Y\sim \mathcal{N}(0,1)}\left[\left(\sin X + X\cos X, (\sin X + X\cos X) Y\right)^T\right] + (\mu-1, 1 - 1/\sigma)^T
 \end{align*}
 \begin{python}
 mu = 0
-sigma = 1
-B = 16
+tau = 0
+B = 32
 lr = 1e-2
-iteration = 50
+iteration = 500
+
+logger = []
+
+def loss(X, mu, tau):
+    return torch.sum(X*torch.sin(X))/X.shape[0] + 0.5*(mu-1)**2 + np.exp(tau) - tau
 
 for _ in range(iteration):
     Y = torch.normal(0,1,size=(B,1))
+    sigma = np.exp(tau)
     X = mu + sigma*Y
-    g1 = torch.sum(torch.sin(X) + X*torch.cos(X))
-    g2 = torch.sum((torch.sin(X) + X*torch.cos(X))*Y)
-    mu -= lr*g1/B
-    sigma -=lr*g2/B
-print(mu)
-print(sigma)
+    g1 = torch.sum(torch.sin(X) + X*torch.cos(X))/B + mu-1
+    g2 = torch.sum((torch.sin(X) + X*torch.cos(X))*sigma*Y)/B + sigma - 1
+
+    mu -= lr*g1
+    tau -=lr*g2
+
+    logger.append(loss(X, mu, tau))
+
+plt.plot(range(iteration),logger)
+
+print(mu.item())
+print(np.exp(tau.item()))
 \end{python}
 \begin{python}
-tensor(0.0062)
-tensor(0.6018)
+0.44522392749786377
+0.6097483273335648
 \end{python}
 
 
