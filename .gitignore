@@ -1,1 +1,4 @@
 *.gz
+
+hw11/kmnist_data/
+hw11/mnist_data/

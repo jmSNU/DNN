@@ -273,7 +273,7 @@ To implement the following code, I calculated the gradient of objective function
 \end{align*}
 By inserting followin derivatives into the equation above, the gradient of objective function can be derived.
 \begin{align*}
-    {\partial \over \partial \mu } \log f &= -\frac{x-\mu}{\sigma^2}\\
+    {\partial \over \partial \mu } \log f &= \frac{x-\mu}{\sigma^2}\\
     {\partial \over \partial \sigma } \log f &= \frac{(x-\mu)^2}{\sigma^2} - 1/\sigma^2
 \end{align*}
 \begin{python}

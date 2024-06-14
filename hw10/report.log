@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Homebrew) (preloaded format=pdflatex 2024.2.23)  26 MAY 2024 21:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Homebrew) (preloaded format=pdflatex 2024.2.23)  27 MAY 2024 14:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -834,7 +834,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  99i,18n,103p,781b,2609s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsltt10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb>
-Output written on report.pdf (6 pages, 297404 bytes).
+Output written on report.pdf (6 pages, 297351 bytes).
 PDF statistics:
  343 PDF objects out of 1000 (max. 8388607)
  280 compressed objects within 3 object streams

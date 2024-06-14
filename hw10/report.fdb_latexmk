@@ -1,10 +1,10 @@
 # Fdb version 4
-["pdflatex"] 1716725082 "/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw10/report.tex" "report.pdf" "report" 1716725082 0
+["pdflatex"] 1716788325 "/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw10/report.tex" "report.pdf" "report" 1716788326 0
   "../hw10/fig1.png" 1716690657 28210 6bad44e92d3cc8d66d5e0eefcb788d3b ""
   "../hw10/plt1.png" 1716346171 9463 9fb50a1a32187e99d40cc43cb4a583f2 ""
   "../hw10/plt2.png" 1716346172 9647 20b36f84796d21aaffb596ca336372db ""
   "../hw10/plt3.png" 1716346172 9788 e3f6d4029962b592721f537df8877520 ""
-  "/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw10/report.tex" 1716725081 14543 0cbbc42f46019abeb71d645c8487bd8a ""
+  "/Users/jeongminlee/Desktop/2024 Spring/DNN/hw/hw10/report.tex" 1716788325 14542 5472893e1de559f59ede8bec70309ac1 ""
   "/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1678549815 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/map/fontname/texfonts.map" 1678549815 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/fonts/map/pdftex/updmap/pdftex.map" 1678549815 4609045 74543da1ab9350ba886fce0af49a2cfd ""
@@ -262,9 +262,9 @@
   "/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/tex/plain/kotex-plain/kotexutf-core.tex" 1678549815 22796 cdbc6dbba903a5287c558339ae446988 ""
   "/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-dist/web2c/texmf.cnf" 1678549815 40748 4081c8bc921e56c865f975bd762e388c ""
   "/opt/homebrew/Cellar/texlive/20230313_3/share/texmf-var/web2c/pdftex/pdflatex.fmt" 1678549815 7884066 53a9aad02a5b14fbfbcc78ec177fdd6d ""
-  "report.aux" 1716725082 1751 a365ab41f925a4d249497852ade06180 "pdflatex"
-  "report.out" 1716725082 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "report.tex" 1716725081 14543 0cbbc42f46019abeb71d645c8487bd8a ""
+  "report.aux" 1716788326 1751 a365ab41f925a4d249497852ade06180 "pdflatex"
+  "report.out" 1716788326 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "report.tex" 1716788325 14542 5472893e1de559f59ede8bec70309ac1 ""
   (generated)
   "report.aux"
   "report.log"
